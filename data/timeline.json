@@ -1,0 +1,47 @@
+[
+  {
+    "year": "2022",
+    "title": "The Beginning",
+    "paragraphs": [
+      "Started my professional journey as a Web Development Intern at Digital Connect while completing my B.Tech in Computer Science.",
+      "Worked on real client projects, learned industry workflows, and contributed to website design, development, and deployment."
+    ],
+    "tags": ["Web Development", "Client Projects", "UI/UX"]
+  },
+  {
+    "year": "2023",
+    "title": "Building Experience",
+    "paragraphs": [
+      "Worked on a growing number of client websites and web applications while strengthening full-stack development skills.",
+      "Gained experience in frontend development, backend integration, API implementation, and project delivery."
+    ],
+    "tags": ["Full Stack Development", "React", "Web Applications"]
+  },
+  {
+    "year": "2024",
+    "title": "Exploring Artificial Intelligence",
+    "paragraphs": [
+      "Expanded into Artificial Intelligence and Machine Learning through internships, certifications, and hands-on projects.",
+      "Built applications involving recommendation systems, predictive analytics, and intelligent automation."
+    ],
+    "tags": ["Artificial Intelligence", "Machine Learning", "Data Science"]
+  },
+  {
+    "year": "2025",
+    "title": "Engineering Advanced Systems",
+    "paragraphs": [
+      "Developed research-oriented and production-grade projects across Computer Vision, Healthcare AI, Enterprise AI, Recommendation Systems, and Full Stack Platforms.",
+      "Worked on solutions involving Deep Learning, RAG systems, Generative AI, and domain-specific intelligent applications."
+    ],
+    "tags": ["Computer Vision", "Generative AI", "Enterprise AI", "Research Projects"]
+  },
+  {
+    "year": "2026",
+    "title": "The Next Chapter",
+    "paragraphs": [
+      "Graduated with a Bachelor of Technology in Computer Science Engineering.",
+      "Actively seeking opportunities in Software Engineering, Full Stack Development, Artificial Intelligence, and Machine Learning while preparing for global academic and professional growth."
+    ],
+    "tags": ["Software Engineering", "Artificial Intelligence", "Cybersecurity", "Global Opportunities"]
+  }
+]

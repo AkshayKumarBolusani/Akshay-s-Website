@@ -1,0 +1,10 @@
+# Security Policy for akshaykumarbolusani.com
+# https://securitytxt.org/
+
+Contact: mailto:akshaykumarbolusani@gmail.com
+Expires: 2027-06-04T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://akshaykumarbolusani.com/.well-known/security.txt
+
+# This is a personal portfolio website.
+# If you discover any security issues, please report them responsibly.

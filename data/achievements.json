@@ -1,0 +1,36 @@
+{
+  "stats": [
+    {
+      "label": "Portfolio Projects",
+      "computed": "projectsTotal",
+      "suffix": ""
+    },
+    {
+      "label": "Featured Projects",
+      "computed": "projectsFeatured",
+      "suffix": ""
+    },
+    {
+      "label": "Years Experience",
+      "value": 3,
+      "suffix": "+"
+    }
+  ],
+  "websiteStudio": {
+    "totalWebsites": 100,
+    "suffix": "+"
+  },
+  "websiteCategories": [
+    { "name": "Healthcare", "count": 35, "accent": "#39D98A" },
+    { "name": "Education", "count": 25, "accent": "#4DA3FF" },
+    { "name": "Startups", "count": 20, "accent": "#7C5CFF" },
+    { "name": "Personal Brands", "count": 15, "accent": "#FF6B8B" },
+    { "name": "Events", "count": 12, "accent": "#FFB454" },
+    { "name": "Business", "count": 18, "accent": "#2DD4BF" }
+  ],
+  "skills": {
+    "AI & Machine Learning": ["PyTorch", "TensorFlow", "scikit-learn", "Computer Vision", "LLMs / RAG", "Graph Neural Networks"],
+    "Full Stack": ["Next.js", "React", "TypeScript", "Node.js", "Express", "FastAPI", "MongoDB", "PostgreSQL"],
+    "Tooling & Cloud": ["Docker", "AWS", "Vercel", "Git", "Streamlit", "Prisma", "Redis"]
+  }
+}
