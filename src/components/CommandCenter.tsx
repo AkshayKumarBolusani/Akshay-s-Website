@@ -81,13 +81,13 @@ export function CommandCenter() {
           <button
             type="button"
             onClick={() => go("#home")}
-            className="touch-target group flex shrink-0 items-center gap-2 font-mono text-sm font-semibold tracking-tight"
-            aria-label="Go to top"
+            className="touch-target group flex shrink-0 items-center gap-2 text-sm font-semibold tracking-tight"
+            aria-label="Akshay Kumar Bolusani - Go to home"
           >
             <span className="grid h-8 w-8 place-items-center rounded-md bg-accent/15 text-accent ring-1 ring-accent/30 sm:h-7 sm:w-7">
               AK
             </span>
-            <span className="hidden sm:inline">{site.brand}</span>
+            <span className="hidden sm:inline">{site.name}</span>
           </button>
 
           <nav
@@ -135,26 +135,23 @@ export function CommandCenter() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[90] flex items-end justify-center p-4 sm:items-start sm:pt-[max(12vh,env(safe-area-inset-top,0px)+4rem)]"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:items-start sm:pt-[max(12vh,5rem)]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <button
               type="button"
-              className="absolute inset-0 bg-bg/80 backdrop-blur-md"
+              className="absolute inset-0 bg-bg/90 backdrop-blur-md"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
             />
             <motion.div
-              className="panel relative max-h-[min(85dvh,32rem)] w-full max-w-lg overflow-hidden rounded-2xl sm:max-h-none"
+              className="panel relative w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-bg-soft/95 shadow-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.98 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                marginBottom: "max(0px, env(safe-area-inset-bottom, 0px))",
-              }}
             >
               <div className="flex items-center justify-between border-b border-border px-4 py-4 sm:px-5">
                 <span className="font-mono text-xs tracking-widest text-accent-2">
@@ -169,7 +166,7 @@ export function CommandCenter() {
                   <X className="h-5 w-5 text-muted" />
                 </button>
               </div>
-              <ul className="max-h-[60dvh] overflow-y-auto overscroll-contain p-2 sm:max-h-none">
+              <ul className="max-h-[70vh] overflow-y-auto overscroll-contain p-2">
                 {nav.map((n, i) => (
                   <motion.li
                     key={n.id}
@@ -190,6 +187,11 @@ export function CommandCenter() {
                   </motion.li>
                 ))}
               </ul>
+              <div className="border-t border-border px-4 py-3 text-center">
+                <span className="font-mono text-[0.65rem] tracking-widest text-faint">
+                  Press ESC or tap outside to close
+                </span>
+              </div>
             </motion.div>
           </motion.div>
         )}

@@ -42,14 +42,16 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/icon.svg",
+    shortcut: "/favicon.ico",
   },
   appleWebApp: {
     capable: true,
@@ -102,9 +104,7 @@ export const metadata: Metadata = {
     telephone: true,
   },
   other: {
-    "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE",
-    "msvalidate.01": "YOUR_BING_VERIFICATION_CODE",
-    "yandex-verification": "YOUR_YANDEX_VERIFICATION_CODE",
+    "google-site-verification": "googlee8f5c2d0e346274f",
     "ai-content-declaration": "human-authored",
     "content-language": "en-US",
   },

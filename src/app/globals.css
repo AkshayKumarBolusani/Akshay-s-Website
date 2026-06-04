@@ -7,7 +7,7 @@
   --color-border: #1c2030;
   --color-fg: #f2f4fb;
   --color-muted: #8b90a6;
-  --color-faint: #565b73;
+  --color-faint: #9298ad;
 
   --color-accent: #7c5cff;
   --color-accent-2: #2dd4bf;
@@ -83,6 +83,30 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 767px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .animate-float,
+  .animate-spin-slow,
+  .animate-pulse-slow {
+    animation: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Hardware acceleration hints */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 ::selection {
@@ -180,6 +204,29 @@ body {
   0%, 100% { opacity: 0.25; }
   50% { opacity: 1; }
 }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 0.35; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animation-delay-500 { animation-delay: 0.5s; }
+.animation-delay-800 { animation-delay: 0.8s; }
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-1500 { animation-delay: 1.5s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
 
 .section-label {
   font-family: var(--font-mono);

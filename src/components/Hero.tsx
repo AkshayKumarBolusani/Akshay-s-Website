@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useSyncExternalStore } from "react";
+import { useRef, useSyncExternalStore, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
   useReducedMotion,
 } from "framer-motion";
 import {
@@ -37,6 +36,15 @@ export function Hero({
 }) {
   const reduce = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsMobile(!mq.matches);
+    const handler = () => setIsMobile(!mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const mounted = useSyncExternalStore(
     () => () => {},
@@ -49,14 +57,11 @@ export function Hero({
     offset: ["start start", "end start"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-  });
-
-  const opacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(smoothProgress, [0, 0.5], [1, 0.98]);
-  const imgY = useTransform(smoothProgress, [0, 1], ["0%", "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.98]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  
+  const shouldAnimate = !reduce && !isMobile;
 
   return (
     <section
@@ -70,32 +75,38 @@ export function Hero({
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 dot-grid opacity-20" />
 
-      {/* Gradient Orbs */}
+      {/* Gradient Orbs - Static on mobile for performance */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <motion.div
-          className="absolute -left-[15%] top-[15%] h-[50vh] w-[50vh] rounded-full bg-accent/20 blur-[120px]"
-          animate={reduce ? {} : { scale: [1, 1.1, 1], opacity: [0.2, 0.35, 0.2] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className={cn(
+            "absolute -left-[15%] top-[15%] h-[50vh] w-[50vh] rounded-full bg-accent/20 blur-[120px]",
+            shouldAnimate && "animate-pulse-slow"
+          )}
+          style={{ willChange: shouldAnimate ? "transform, opacity" : "auto" }}
         />
-        <motion.div
-          className="absolute -right-[5%] top-[30%] h-[45vh] w-[45vh] rounded-full bg-accent-2/15 blur-[100px]"
-          animate={reduce ? {} : { scale: [1.1, 1, 1.1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className={cn(
+            "absolute -right-[5%] top-[30%] h-[45vh] w-[45vh] rounded-full bg-accent-2/15 blur-[100px]",
+            shouldAnimate && "animate-pulse-slow animation-delay-2000"
+          )}
+          style={{ willChange: shouldAnimate ? "transform, opacity" : "auto" }}
         />
-        <motion.div
-          className="absolute bottom-[10%] left-[30%] h-[35vh] w-[35vh] rounded-full bg-accent-3/10 blur-[80px]"
-          animate={reduce ? {} : { scale: [1, 1.2, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className={cn(
+            "absolute bottom-[10%] left-[30%] h-[35vh] w-[35vh] rounded-full bg-accent-3/10 blur-[80px]",
+            shouldAnimate && "animate-pulse-slow animation-delay-4000"
+          )}
+          style={{ willChange: shouldAnimate ? "transform, opacity" : "auto" }}
         />
       </div>
 
       {/* Main Content */}
       <motion.div
         className="relative mx-auto grid min-h-[100dvh] max-w-7xl grid-cols-1 items-center gap-6 px-4 pb-20 pt-24 sm:px-6 sm:pt-28 lg:grid-cols-[1fr_1.1fr] lg:gap-8 lg:pb-0 lg:pt-20"
-        style={{ opacity: reduce ? 1 : opacity, scale: reduce ? 1 : scale }}
+        style={{ opacity: isMobile ? 1 : opacity, scale: isMobile ? 1 : scale }}
       >
         {/* Left Content */}
-        <div className="relative z-10 order-2 lg:order-1">
+        <div className="relative z-10 order-1 lg:order-1">
           {/* Status Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -113,17 +124,17 @@ export function Hero({
           </motion.div>
 
           {/* Main Headline */}
-          <div className="mb-4 space-y-0.5 sm:mb-5">
+          <div className="mb-4 space-y-1 sm:mb-5 sm:space-y-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+                <span className="text-fg">Hi, I'm </span>
                 <span className="bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-transparent">
-                  100+
-                </span>{" "}
-                <span className="text-fg">Websites</span>
+                  Akshay Kumar
+                </span>
               </h1>
             </motion.div>
 
@@ -132,11 +143,8 @@ export function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                <span className="bg-gradient-to-r from-accent-2 to-accent bg-clip-text text-transparent">
-                  {projectCount}+
-                </span>{" "}
-                <span className="text-fg">Projects</span>
+              <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-fg sm:text-4xl lg:text-5xl">
+                I bring ideas to life
               </h1>
             </motion.div>
 
@@ -145,8 +153,10 @@ export function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h1 className="text-3xl font-bold leading-[1.05] tracking-tight text-muted sm:text-4xl lg:text-5xl">
-                One Builder.
+              <h1 className="text-2xl font-bold leading-[1.1] tracking-tight sm:text-3xl lg:text-4xl">
+                <span className="bg-gradient-to-r from-accent-2 to-accent-3 bg-clip-text text-transparent">
+                  What's yours?
+                </span>
               </h1>
             </motion.div>
           </div>
@@ -241,65 +251,76 @@ export function Hero({
 
         {/* Right - Profile Image with Floating Elements */}
         <motion.div
-          className="relative order-1 flex items-center justify-center lg:order-2"
+          className="relative order-2 flex items-center justify-center lg:order-2"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          style={{ y: reduce ? 0 : imgY }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          style={{ y: isMobile ? 0 : imgY }}
         >
           {/* Floating Graphics Container */}
           <div className="relative h-[340px] w-[260px] sm:h-[420px] sm:w-[320px] lg:h-[520px] lg:w-[400px]">
             
-            {/* Floating Icon - Top Left */}
-            <motion.div
-              className="absolute -left-2 top-8 z-20 flex h-10 w-10 items-center justify-center rounded-xl border border-accent/30 bg-bg/80 backdrop-blur-md sm:-left-4 sm:top-12 sm:h-12 sm:w-12 lg:h-14 lg:w-14"
-              animate={reduce ? {} : { y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Code2 className="h-4 w-4 text-accent sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
-            </motion.div>
+            {/* Floating Icons - Hidden on mobile for performance */}
+            {!isMobile && (
+              <>
+                {/* Floating Icon - Top Left */}
+                <div
+                  className={cn(
+                    "absolute -left-4 top-12 z-20 flex h-12 w-12 items-center justify-center rounded-xl border border-accent/30 bg-bg/80 backdrop-blur-md lg:h-14 lg:w-14",
+                    shouldAnimate && "animate-float"
+                  )}
+                >
+                  <Code2 className="h-5 w-5 text-accent lg:h-6 lg:w-6" />
+                </div>
 
-            {/* Floating Icon - Top Right */}
-            <motion.div
-              className="absolute -right-2 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-xl border border-accent-2/30 bg-bg/80 backdrop-blur-md sm:-right-4 sm:top-8 sm:h-12 sm:w-12 lg:h-14 lg:w-14"
-              animate={reduce ? {} : { y: [0, -10, 0], rotate: [0, 5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
-              <Cpu className="h-4 w-4 text-accent-2 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
-            </motion.div>
+                {/* Floating Icon - Top Right */}
+                <div
+                  className={cn(
+                    "absolute -right-4 top-8 z-20 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-2/30 bg-bg/80 backdrop-blur-md lg:h-14 lg:w-14",
+                    shouldAnimate && "animate-float animation-delay-500"
+                  )}
+                >
+                  <Cpu className="h-5 w-5 text-accent-2 lg:h-6 lg:w-6" />
+                </div>
 
-            {/* Floating Icon - Middle Right */}
-            <motion.div
-              className="absolute -right-4 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-accent-3/30 bg-bg/80 backdrop-blur-md sm:-right-6 sm:h-11 sm:w-11 lg:h-12 lg:w-12"
-              animate={reduce ? {} : { x: [0, 6, 0], y: [0, -4, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            >
-              <Zap className="h-4 w-4 text-accent-3 sm:h-5 sm:w-5" />
-            </motion.div>
+                {/* Floating Icon - Middle Right */}
+                <div
+                  className={cn(
+                    "absolute -right-6 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-accent-3/30 bg-bg/80 backdrop-blur-md lg:h-12 lg:w-12",
+                    shouldAnimate && "animate-float animation-delay-1000"
+                  )}
+                >
+                  <Zap className="h-5 w-5 text-accent-3" />
+                </div>
 
-            {/* Floating Icon - Bottom Left */}
-            <motion.div
-              className="absolute -left-3 bottom-20 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-accent/30 bg-bg/80 backdrop-blur-md sm:-left-5 sm:bottom-24 sm:h-11 sm:w-11 lg:h-12 lg:w-12"
-              animate={reduce ? {} : { y: [0, 8, 0], x: [0, -4, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            >
-              <Globe className="h-4 w-4 text-accent sm:h-5 sm:w-5" />
-            </motion.div>
+                {/* Floating Icon - Bottom Left */}
+                <div
+                  className={cn(
+                    "absolute -left-5 bottom-24 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-accent/30 bg-bg/80 backdrop-blur-md lg:h-12 lg:w-12",
+                    shouldAnimate && "animate-float animation-delay-1500"
+                  )}
+                >
+                  <Globe className="h-5 w-5 text-accent" />
+                </div>
 
-            {/* Floating Icon - Bottom Right */}
-            <motion.div
-              className="absolute -right-2 bottom-16 z-20 flex h-10 w-10 items-center justify-center rounded-xl border border-accent-2/30 bg-bg/80 backdrop-blur-md sm:-right-4 sm:bottom-20 sm:h-12 sm:w-12 lg:h-14 lg:w-14"
-              animate={reduce ? {} : { y: [0, -6, 0], rotate: [0, -5, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-            >
-              <Layers className="h-4 w-4 text-accent-2 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
-            </motion.div>
+                {/* Floating Icon - Bottom Right */}
+                <div
+                  className={cn(
+                    "absolute -right-4 bottom-20 z-20 flex h-12 w-12 items-center justify-center rounded-xl border border-accent-2/30 bg-bg/80 backdrop-blur-md lg:h-14 lg:w-14",
+                    shouldAnimate && "animate-float animation-delay-800"
+                  )}
+                >
+                  <Layers className="h-5 w-5 text-accent-2 lg:h-6 lg:w-6" />
+                </div>
+              </>
+            )}
 
-            {/* Decorative Ring */}
-            <motion.div
-              className="absolute inset-4 rounded-3xl border border-dashed border-accent/20 sm:inset-6"
-              animate={reduce ? {} : { rotate: [0, 360] }}
-              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+            {/* Decorative Ring - CSS animation instead of Framer */}
+            <div
+              className={cn(
+                "absolute inset-4 rounded-3xl border border-dashed border-accent/20 sm:inset-6",
+                shouldAnimate && "animate-spin-slow"
+              )}
             />
 
             {/* Glow Effect */}
@@ -367,10 +388,11 @@ export function Hero({
         <span className="font-mono text-[0.6rem] tracking-widest text-faint">
           SCROLL
         </span>
-        <motion.div
-          className="h-8 w-px bg-gradient-to-b from-accent/50 to-transparent"
-          animate={reduce ? {} : { scaleY: [0.5, 1, 0.5], opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className={cn(
+            "h-8 w-px bg-gradient-to-b from-accent/50 to-transparent",
+            shouldAnimate && "animate-pulse"
+          )}
         />
       </motion.div>
     </section>

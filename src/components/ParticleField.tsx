@@ -12,7 +12,7 @@ function seededRandom(seed: number): () => number {
   };
 }
 
-function Stars({ count = 1800, seed = 42 }: { count?: number; seed?: number }) {
+function Stars({ count = 1800, seed = 42, isMobile = false }: { count?: number; seed?: number; isMobile?: boolean }) {
   const ref = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
@@ -31,11 +31,15 @@ function Stars({ count = 1800, seed = 42 }: { count?: number; seed?: number }) {
 
   useFrame((state, delta) => {
     if (!ref.current) return;
-    ref.current.rotation.y += delta * 0.03;
-    ref.current.rotation.x += delta * 0.008;
-    const m = state.pointer;
-    ref.current.position.x = m.x * 0.4;
-    ref.current.position.y = m.y * 0.3;
+    if (isMobile) {
+      ref.current.rotation.y += delta * 0.01;
+    } else {
+      ref.current.rotation.y += delta * 0.03;
+      ref.current.rotation.x += delta * 0.008;
+      const m = state.pointer;
+      ref.current.position.x = m.x * 0.4;
+      ref.current.position.y = m.y * 0.3;
+    }
   });
 
   return (
@@ -47,10 +51,10 @@ function Stars({ count = 1800, seed = 42 }: { count?: number; seed?: number }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.025}
+        size={isMobile ? 0.03 : 0.025}
         color="#9d8bff"
         transparent
-        opacity={0.85}
+        opacity={isMobile ? 0.6 : 0.85}
         sizeAttenuation
         depthWrite={false}
       />
@@ -59,24 +63,41 @@ function Stars({ count = 1800, seed = 42 }: { count?: number; seed?: number }) {
 }
 
 export default function ParticleField() {
-  const [count, setCount] = useState(600);
+  const [isMobile, setIsMobile] = useState(true);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setCount(mq.matches ? 1400 : 600);
+    const update = () => setIsMobile(!mq.matches);
     update();
     mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    
+    const timer = setTimeout(() => setShouldRender(true), 100);
+    
+    return () => {
+      mq.removeEventListener("change", update);
+      clearTimeout(timer);
+    };
   }, []);
+
+  if (!shouldRender) return null;
+
+  const count = isMobile ? 200 : 1000;
 
   return (
     <Canvas
       camera={{ position: [0, 0, 9], fov: 60 }}
-      dpr={[1, 1.25]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      dpr={isMobile ? 1 : [1, 1.5]}
+      gl={{ 
+        antialias: !isMobile, 
+        alpha: true, 
+        powerPreference: isMobile ? "low-power" : "high-performance",
+        failIfMajorPerformanceCaveat: true,
+      }}
       style={{ pointerEvents: "none" }}
+      frameloop={isMobile ? "demand" : "always"}
     >
-      <Stars count={count} />
+      <Stars count={count} isMobile={isMobile} />
     </Canvas>
   );
 }

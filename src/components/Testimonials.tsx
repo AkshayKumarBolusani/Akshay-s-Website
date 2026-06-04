@@ -132,19 +132,23 @@ export function Testimonials({ testimonials }: { testimonials: Testimonial[] }) 
                 <ChevronLeft className="h-5 w-5" />
               </button>
 
-              <div className="flex gap-2">
+              <div className="flex gap-1">
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentIndex(i)}
-                    className={cn(
-                      "h-2 w-2 rounded-full transition-all",
-                      i === currentIndex
-                        ? "w-6 bg-accent"
-                        : "bg-border hover:bg-muted"
-                    )}
+                    className="flex h-11 w-11 items-center justify-center"
                     aria-label={`Go to testimonial ${i + 1}`}
-                  />
+                  >
+                    <span
+                      className={cn(
+                        "block h-2 rounded-full transition-all",
+                        i === currentIndex
+                          ? "w-6 bg-accent"
+                          : "w-2 bg-border hover:bg-muted"
+                      )}
+                    />
+                  </button>
                 ))}
               </div>
 

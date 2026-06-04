@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 export function Reveal({
   children,
@@ -15,13 +16,25 @@ export function Reveal({
   className?: string;
 }) {
   const reduce = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+  
+  const mobileY = Math.min(y, 16);
+  
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y }}
+      initial={reduce ? false : { opacity: 0, y: isMobile ? mobileY : y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ 
+        duration: isMobile ? 0.4 : 0.6, 
+        delay: isMobile ? Math.min(delay, 0.1) : delay, 
+        ease: [0.25, 0.1, 0.25, 1] 
+      }}
     >
       {children}
     </motion.div>
