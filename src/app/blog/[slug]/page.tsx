@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar, Tag, ArrowUpRight } from "lucide-react";
 import { getBlogPost, getBlogSlugs, getBlogPosts } from "@/lib/data";
 import { site } from "@/lib/site";
+import { toSchemaDateTime } from "@/lib/utils";
 import { Reveal } from "@/components/Reveal";
 
 export const dynamicParams = false;
@@ -72,8 +73,8 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.excerpt,
     image: post.thumbnail,
-    datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    datePublished: toSchemaDateTime(post.publishedAt),
+    dateModified: toSchemaDateTime(post.publishedAt),
     author: {
       "@type": "Person",
       name: post.author.name,

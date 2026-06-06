@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { getBlogPosts } from "@/lib/data";
 import { site } from "@/lib/site";
+import { toSchemaDateTime } from "@/lib/utils";
 import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -99,7 +100,7 @@ export default function BlogPage() {
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      datePublished: post.publishedAt,
+      datePublished: toSchemaDateTime(post.publishedAt),
       url: `${site.url}/blog/${post.slug}`,
       author: {
         "@type": "Person",

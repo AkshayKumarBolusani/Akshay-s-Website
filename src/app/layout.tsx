@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { toSchemaDateTime } from "@/lib/utils";
 import { CommandCenter } from "@/components/CommandCenter";
 import { AskAkshayAI } from "@/components/AskAkshayAI";
 import { getProjects, getAchievements, getProfile } from "@/lib/data";
@@ -231,8 +232,8 @@ export default function RootLayout({
     description: site.longDescription,
     url: site.url,
     mainEntity: { "@id": `${site.url}/#person` },
-    dateCreated: "2022-09-01",
-    dateModified: new Date().toISOString().split("T")[0],
+    dateCreated: toSchemaDateTime("2022-09-01"),
+    dateModified: toSchemaDateTime(new Date()),
   };
 
   const organizationLd = {
