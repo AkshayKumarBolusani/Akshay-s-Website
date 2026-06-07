@@ -1,14 +1,5 @@
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { ProjectVault } from "@/components/ProjectVault";
-import { WebsiteShowcase } from "@/components/WebsiteShowcase";
-import { ProjectKaro } from "@/components/ProjectKaro";
-import { BlogSection } from "@/components/BlogSection";
-import { Testimonials } from "@/components/Testimonials";
-import { Certifications } from "@/components/Certifications";
-import { MediaGallery } from "@/components/MediaGallery";
-import { Recruiter } from "@/components/Recruiter";
-import { Contact } from "@/components/Contact";
 import {
   getTimeline,
   getCertifications,
@@ -23,6 +14,35 @@ import {
   getTestimonials,
 } from "@/lib/data";
 import { site } from "@/lib/site";
+
+const About = dynamic(() => import("@/components/About").then((m) => ({ default: m.About })));
+const ProjectVault = dynamic(() =>
+  import("@/components/ProjectVault").then((m) => ({ default: m.ProjectVault })),
+);
+const WebsiteShowcase = dynamic(() =>
+  import("@/components/WebsiteShowcase").then((m) => ({ default: m.WebsiteShowcase })),
+);
+const ProjectKaro = dynamic(() =>
+  import("@/components/ProjectKaro").then((m) => ({ default: m.ProjectKaro })),
+);
+const BlogSection = dynamic(() =>
+  import("@/components/BlogSection").then((m) => ({ default: m.BlogSection })),
+);
+const Testimonials = dynamic(() =>
+  import("@/components/Testimonials").then((m) => ({ default: m.Testimonials })),
+);
+const Certifications = dynamic(() =>
+  import("@/components/Certifications").then((m) => ({ default: m.Certifications })),
+);
+const MediaGallery = dynamic(() =>
+  import("@/components/MediaGallery").then((m) => ({ default: m.MediaGallery })),
+);
+const Recruiter = dynamic(() =>
+  import("@/components/Recruiter").then((m) => ({ default: m.Recruiter })),
+);
+const Contact = dynamic(() =>
+  import("@/components/Contact").then((m) => ({ default: m.Contact })),
+);
 
 export default function Home() {
   const projects = getProjects();

@@ -69,9 +69,9 @@ export function Hero({
       ref={containerRef}
       className="relative min-h-[100dvh] overflow-hidden"
     >
-      {/* Ambient Background */}
+      {/* Ambient Background — desktop only (Three.js is heavy on mobile) */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-60">
-        {mounted && !reduce && <ParticleField />}
+        {mounted && !reduce && !isMobile && <ParticleField />}
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 dot-grid opacity-20" />
 
@@ -115,7 +115,9 @@ export function Hero({
             className="mb-4 inline-flex items-center gap-2.5 sm:mb-5"
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+              {!isMobile && (
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+              )}
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
             </span>
             <span className="font-mono text-[0.6rem] tracking-wider text-green-400 sm:text-xs">

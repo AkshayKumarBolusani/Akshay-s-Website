@@ -4,7 +4,7 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import { toSchemaDateTime } from "@/lib/utils";
 import { CommandCenter } from "@/components/CommandCenter";
-import { AskAkshayAI } from "@/components/AskAkshayAI";
+import { LazyAskAkshayAI } from "@/components/LazyAskAkshayAI";
 import { getProjects, getAchievements, getProfile } from "@/lib/data";
 import { buildSearchIndex } from "@/lib/search";
 
@@ -334,6 +334,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content={site.brand} />
         <meta name="msapplication-TileColor" content="#7c5cff" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="preload" as="image" href="/akshay.webp" type="image/webp" fetchPriority="high" />
         <link rel="author" href="/humans.txt" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs" />
@@ -363,7 +368,7 @@ export default function RootLayout({
         <div id="main-content">
           {children}
         </div>
-        <AskAkshayAI index={searchIndex} />
+        <LazyAskAkshayAI index={searchIndex} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
