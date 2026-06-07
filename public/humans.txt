@@ -5,6 +5,7 @@ Location: Hyderabad, India
 Email: akshaykumarbolusani@gmail.com
 LinkedIn: linkedin.com/in/akshaykumarbolusani
 GitHub: github.com/AkshayKumarBolusani
+Site: https://akshaykumarbolusani.vercel.app
 
 /* THANKS */
 Inspiration: The open-source community
@@ -12,7 +13,7 @@ Mentors: Digital Connect team
 Support: Family and friends
 
 /* SITE */
-Last update: 2026-06-04
+Last update: 2026-06-06
 Language: English
 Doctype: HTML5
 Framework: Next.js 16
@@ -21,13 +22,14 @@ Animations: Framer Motion
 3D Graphics: Three.js, React Three Fiber
 Fonts: Geist Sans, Geist Mono
 Icons: Lucide React
-Hosting: Vercel
+Hosting: Vercel (https://akshaykumarbolusani.vercel.app)
 
 /* BUILD INFO */
 Standards: HTML5, CSS3, ES2024
 Accessibility: WCAG 2.1 AA compliant
 Performance: Core Web Vitals optimized
 SEO: Schema.org structured data
+GEO: llms.txt for AI crawlers
 PWA: Progressive Web App enabled
 
 /* PHILOSOPHY */
@@ -38,8 +40,8 @@ Code is poetry. Design is communication. Engineering is art.
 /* EASTER EGG */
 Press Cmd/Ctrl + K for the command center.
 Try the AI assistant at the bottom right.
-Explore the project galaxy to see all 50+ projects.
+Explore the project galaxy to see all projects.
 
 /* COLOPHON */
 Built with passion, deployed with care.
-"Building Ideas Into Reality" - Akshay Labs
+"Building Ideas Into Reality" - Akshay Kumar Bolusani

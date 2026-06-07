@@ -58,9 +58,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
     title: site.brand,
-    startupImage: [
-      { url: "/splash.png", media: "(device-width: 375px) and (device-height: 812px)" },
-    ],
   },
   openGraph: {
     type: "profile",
@@ -70,8 +67,8 @@ export const metadata: Metadata = {
     title: `${site.name} — Software Engineer & AI/ML Engineer`,
     description: site.longDescription,
     images: [
+      { url: site.ogImage, width: 1200, height: 630, alt: `${site.name} - Portfolio` },
       { url: site.image, width: 1200, height: 1200, alt: `${site.name} - Profile Photo` },
-      { url: "/og-image.png", width: 1200, height: 630, alt: `${site.name} - Portfolio` },
     ],
     firstName: "Akshay Kumar",
     lastName: "Bolusani",
@@ -81,7 +78,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.name} — Software Engineer & AI/ML Engineer`,
     description: site.longDescription,
-    images: ["/og-image.png"],
+    images: [site.ogImage],
     creator: "@akshaykumar",
   },
   robots: {
@@ -150,7 +147,6 @@ export default function RootLayout({
     additionalName: "AI/ML Engineer",
     description: site.longDescription,
     email: `mailto:${site.email}`,
-    telephone: "",
     birthPlace: {
       "@type": "Place",
       address: { "@type": "PostalAddress", addressCountry: "IN" },
@@ -164,12 +160,12 @@ export default function RootLayout({
     },
     worksFor: {
       "@type": "Organization",
-      name: site.work.company,
-      url: "https://digitalconnect.in",
+      name: site.brand,
+      url: site.url,
     },
     alumniOf: {
       "@type": "EducationalOrganization",
-      name: "University",
+      name: site.education.degree,
     },
     hasOccupation: [
       {
@@ -243,10 +239,10 @@ export default function RootLayout({
     name: site.projectKaro.name,
     alternateName: "ProjectKaro",
     url: site.projectKaro.url,
-    logo: `${site.url}/icon.svg`,
+    logo: `${site.url}/icon-512.png`,
     description: site.projectKaro.description,
     founder: { "@id": `${site.url}/#person` },
-    foundingDate: "2022",
+    foundingDate: "2022-01-01",
     foundingLocation: {
       "@type": "Place",
       address: {
@@ -339,6 +335,8 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#7c5cff" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
         <link rel="author" href="/humans.txt" />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs" />
         <link rel="me" href={site.socials.linkedin} />
         <link rel="me" href={site.socials.github} />
       </head>

@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function Reveal({
   children,
@@ -45,10 +46,12 @@ export function SectionHeading({
   label,
   title,
   description,
+  descriptionClassName,
 }: {
   label: string;
   title: ReactNode;
   description?: string;
+  descriptionClassName?: string;
 }) {
   return (
     <Reveal className="mx-auto mb-10 max-w-3xl px-1 text-center sm:mb-14">
@@ -57,7 +60,7 @@ export function SectionHeading({
         {title}
       </h2>
       {description && (
-        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted sm:mt-5 sm:text-base md:text-lg">
+        <p className={cn("mx-auto mt-4 max-w-2xl text-balance text-sm text-muted sm:mt-5 sm:text-base md:text-lg", descriptionClassName)}>
           {description}
         </p>
       )}

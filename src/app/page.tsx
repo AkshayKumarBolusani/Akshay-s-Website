@@ -144,11 +144,6 @@ export default function Home() {
     name: "How to Hire Akshay Kumar Bolusani for Your Project",
     description: "Steps to engage Akshay for software development, AI/ML, or consulting services",
     totalTime: "PT24H",
-    estimatedCost: {
-      "@type": "MonetaryAmount",
-      currency: "USD",
-      value: "Contact for quote",
-    },
     step: [
       {
         "@type": "HowToStep",

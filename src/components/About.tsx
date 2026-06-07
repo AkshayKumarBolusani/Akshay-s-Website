@@ -24,6 +24,7 @@ export function About({ timeline }: { timeline: TimelineEntry[] }) {
           </>
         }
         description="From web development intern to research-grade AI — five chapters of growth, delivery, and what comes next."
+        descriptionClassName="about-summary"
       />
 
       <div ref={ref} className="relative mx-auto max-w-3xl">

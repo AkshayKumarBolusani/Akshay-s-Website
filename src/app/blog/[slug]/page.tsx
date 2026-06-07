@@ -33,7 +33,7 @@ export async function generateMetadata({
       description: post.excerpt,
       url: `${site.url}/blog/${post.slug}`,
       type: "article",
-      publishedTime: post.publishedAt,
+      publishedTime: toSchemaDateTime(post.publishedAt),
       authors: [post.author.name],
       images: [{ url: post.thumbnail, alt: post.title }],
     },

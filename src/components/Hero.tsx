@@ -192,7 +192,7 @@ export function Hero({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="mb-5 max-w-md text-sm leading-relaxed text-muted sm:mb-6 sm:text-base"
+            className="hero-description mb-5 max-w-md text-sm leading-relaxed text-muted sm:mb-6 sm:text-base"
           >
             From client websites to{" "}
             <span className="text-fg">quantum drug discovery</span>, computer

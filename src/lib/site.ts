@@ -1,3 +1,6 @@
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://akshaykumarbolusani.vercel.app";
+
 export const site = {
   name: "Akshay Kumar Bolusani",
   shortName: "Akshay",
@@ -12,7 +15,7 @@ export const site = {
     countryCode: "IN",
   },
   email: "akshaykumarbolusani@gmail.com",
-  url: "https://akshaykumarbolusani.com",
+  url: SITE_URL,
   image: "/akshay.webp",
   ogImage: "/og-image.png",
   description:
