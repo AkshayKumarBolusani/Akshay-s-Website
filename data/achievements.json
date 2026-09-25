@@ -21,12 +21,12 @@
     "suffix": "+"
   },
   "websiteCategories": [
-    { "name": "Healthcare", "count": 35, "accent": "#39D98A" },
-    { "name": "Education", "count": 25, "accent": "#4DA3FF" },
-    { "name": "Startups", "count": 20, "accent": "#7C5CFF" },
-    { "name": "Personal Brands", "count": 15, "accent": "#FF6B8B" },
-    { "name": "Events", "count": 12, "accent": "#FFB454" },
-    { "name": "Business", "count": 18, "accent": "#2DD4BF" }
+    { "name": "Healthcare", "count": 18, "accent": "#39D98A" },
+    { "name": "Education", "count": 22, "accent": "#4DA3FF" },
+    { "name": "Startups", "count": 24, "accent": "#7C5CFF" },
+    { "name": "Personal Brands", "count": 20, "accent": "#FF6B8B" },
+    { "name": "Events", "count": 8, "accent": "#FFB454" },
+    { "name": "Business", "count": 14, "accent": "#2DD4BF" }
   ],
   "skills": {
     "AI & Machine Learning": ["PyTorch", "TensorFlow", "scikit-learn", "Computer Vision", "LLMs / RAG", "Graph Neural Networks"],

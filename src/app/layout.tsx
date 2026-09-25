@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     title: `${site.name} — Software Engineer & AI/ML Engineer`,
     description: site.longDescription,
     images: [site.ogImage],
-    creator: "@akshaykumar",
+    creator: "@akshay_bolusani",
   },
   robots: {
     index: true,

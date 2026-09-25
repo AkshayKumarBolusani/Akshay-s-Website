@@ -13,7 +13,7 @@ export function Certifications({
 }) {
   const groups = certs.reduce<Record<string, Certification[]>>(
     (acc, cert) => {
-      const group = cert.group || "Credentials & Achievements";
+      const group = cert.group || " ";
 
       if (!acc[group]) {
         acc[group] = [];

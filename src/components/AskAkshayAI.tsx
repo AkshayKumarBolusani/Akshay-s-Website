@@ -164,9 +164,6 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
                   </span>
                   <div>
                     <p className="text-sm font-semibold">Akshay AI</p>
-                    <p className="font-mono text-[0.6rem] tracking-widest text-faint">
-                      LOCAL · NO LLM COST
-                    </p>
                   </div>
                 </div>
                 <button

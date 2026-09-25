@@ -240,7 +240,7 @@ export function Hero({
             className="mt-6 flex items-center gap-6 border-t border-border/40 pt-5 sm:mt-8 sm:gap-8 sm:pt-6"
           >
             <div>
-              <div className="text-lg font-bold text-fg sm:text-xl">3+</div>
+              <div className="text-lg font-bold text-fg sm:text-xl">{new Date().getFullYear() - 2022}+</div>
               <div className="text-[0.6rem] text-muted sm:text-xs">Years Experience</div>
             </div>
             <div className="h-5 w-px bg-border/50 sm:h-6" />

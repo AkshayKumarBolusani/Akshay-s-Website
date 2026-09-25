@@ -13,36 +13,42 @@ export function CountUp({
   duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "0px" });
   const reduce = useReducedMotion();
-  const [value, setValue] = useState(0);
+  // Start at `to` so SSR/pre-hydration always shows the real number
+  const [value, setValue] = useState(to);
+  const [animated, setAnimated] = useState(false);
+
+  // On mount, reset to 0 so we can animate up from 0 on the client
+  useEffect(() => {
+    setValue(0);
+  }, []);
 
   useEffect(() => {
-    if (!inView) return;
-    
+    if (!inView || animated) return;
+    setAnimated(true);
+
     if (reduce) {
-      // For reduced motion, skip animation
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(to);
       return;
     }
-    
+
     let raf = 0;
     const start = performance.now();
-    
+
     const tick = (now: number) => {
       const t = Math.min((now - start) / (duration * 1000), 1);
       const eased = 1 - Math.pow(1 - t, 3);
       setValue(Math.round(eased * to));
       if (t < 1) raf = requestAnimationFrame(tick);
     };
-    
+
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration, reduce]);
+  }, [inView, to, duration, reduce, animated]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} suppressHydrationWarning>
       {value}
       {suffix}
     </span>

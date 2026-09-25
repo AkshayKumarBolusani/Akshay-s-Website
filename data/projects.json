@@ -461,7 +461,7 @@
   {
     "slug": "externify",
     "title": "Externify",
-    "tagline": "Production with an AI matching microservice",
+    "tagline": "Production-ready SaaS with an AI matching microservice",
     "category": "Startup Projects",
     "domains": ["Full Stack", "SaaS", "AI"],
     "year": "2024",
@@ -702,7 +702,7 @@
     "futureScope": ["Notifications", "Mobile app"]
   },
   {
-    "slug": "Event Management System",
+    "slug": "event-management-system",
     "title": "Event Management System",
     "tagline": "Event and member management with leaderboards",
     "category": "Full Stack Applications",

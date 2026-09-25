@@ -21,7 +21,7 @@ export const site = {
   description:
     "Akshay Kumar Bolusani is a Software Engineer, Full Stack Developer, and AI/ML Engineer based in Hyderabad, India. Former Web Development Intern at Digital Connect (September 2022 – January 2026). Portfolio spans AI, full-stack, and research projects.",
   longDescription:
-    "Akshay Kumar Bolusani is a passionate Software Engineer specializing in Full Stack Development and Artificial Intelligence. With expertise in Next.js, React, Python, and machine learning frameworks, Akshay builds innovative solutions ranging from AI-powered healthcare applications to enterprise-grade web platforms. A B.Tech graduate in Computer Science Engineering with experience as a Web Development Intern at Digital Connect, Akshay has delivered 100+ websites and 50+ technical projects across diverse domains.",
+    "Akshay Kumar Bolusani is a Software Engineer specializing in Full Stack Development and Artificial Intelligence. With expertise in Next.js, React, Python, and machine learning frameworks, Akshay builds solutions ranging from AI-powered healthcare applications to enterprise-grade web platforms. A B.Tech graduate in Computer Science Engineering with 3+ years of experience as a Web Development Intern at Digital Connect, and founder of ProjectKaro — a professional services platform that has served 300+ clients.",
   socials: {
     linkedin: "https://www.linkedin.com/in/akshaykumarbolusani/",
     github: "https://github.com/AkshayKumarBolusani",

@@ -116,7 +116,7 @@ export function ProjectKaro({ data }: { data: ProjectKaroData }) {
                   rel="noopener noreferrer"
                   className="touch-target inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-transform hover:scale-105 active:scale-95"
                 >
-                  Visit ProjectKaro
+                  Launch ProjectKaro
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a
@@ -147,9 +147,8 @@ export function ProjectKaro({ data }: { data: ProjectKaroData }) {
                   transition={{ delay: 0.3 + i * 0.1 }}
                 >
                   <div className="mb-1 text-2xl font-bold text-accent sm:text-3xl">
-                    {i === 0 ? "✓" : i === 1 ? "★" : "◆"}
+                    {item.label}
                   </div>
-                  <div className="text-xs font-semibold sm:text-sm">{item.label}</div>
                   <div className="mt-1 text-[10px] text-muted sm:text-xs">
                     {item.note}
                   </div>

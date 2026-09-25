@@ -19,7 +19,7 @@ export function MediaGallery({ images }: { images: string[] }) {
             <span className="gradient-text">moments</span>
           </>
         }
-        description="Conferences, hackathons, workshops, and awards. Drop photos into public/media/ or public/awards/ — the gallery builds itself."
+        description="Conferences, hackathons, workshops, and awards."
       />
 
       {images.length === 0 ? (
@@ -45,7 +45,7 @@ export function MediaGallery({ images }: { images: string[] }) {
             >
               <Image
                 src={src}
-                alt={`Media ${i + 1}`}
+                alt={`Event photo ${i + 1} — Akshay Kumar Bolusani`}
                 width={500}
                 height={500}
                 className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
