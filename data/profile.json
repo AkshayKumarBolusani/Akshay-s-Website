@@ -1,0 +1,58 @@
+{
+  "digitalConnect": {
+    "company": "Digital Connect",
+    "role": "Web Development Intern",
+    "period": "September 2022 – January 2026"
+  },
+  "education": {
+    "degree": "Bachelor of Technology in Computer Science Engineering",
+    "graduationYear": "2026"
+  },
+  "experience": [
+    {
+      "role": "Web Development Intern",
+      "organization": "Digital Connect",
+      "period": "September 2022 – January 2026",
+      "description": "Client websites and web applications — design, development, API integration, and deployment while completing B.Tech in Computer Science."
+    }
+  ],
+  "projectKaro": {
+    "name": "ProjectKaro",
+    "tagline": "Professional services platform for technical solutions",
+    "url": "https://projectkaro.com",
+    "description": "ProjectKaro is a professional services platform through which clients can request website development, AI solutions, full-stack applications, research projects, and technical consulting. It serves as the bridge between technical skills and real-world client delivery.",
+    "services": [
+      "Website Development",
+      "Personal Portfolio Websites",
+      "Full Stack Applications",
+      "AI Solutions",
+      "Student Major Projects",
+      "Student Minor Projects",
+      "Research Projects",
+      "Startup MVP Development",
+      "Business Websites",
+      "Technical Consulting"
+    ],
+    "process": [
+      { "step": "01", "title": "Requirement Analysis", "description": "Understanding project scope, goals, and technical needs" },
+      { "step": "02", "title": "Planning & Design", "description": "Architecture design, wireframes, and technical specifications" },
+      { "step": "03", "title": "Development", "description": "Building with modern tech stack and best practices" },
+      { "step": "04", "title": "Testing & Review", "description": "Quality assurance, client feedback, and iterations" },
+      { "step": "05", "title": "Delivery & Support", "description": "Deployment, documentation, and ongoing support" }
+    ],
+    "impact": [
+      { "label": "Projects Delivered", "note": "Through ProjectKaro" },
+      { "label": "Client Satisfaction", "note": "Focus on quality delivery" },
+      { "label": "Industries Served", "note": "Healthcare, Education, Startups, and more" }
+    ]
+  },
+  "websiteIndustries": [
+    "Healthcare",
+    "Education",
+    "Startups",
+    "Events",
+    "Personal Brands",
+    "Business"
+  ],
+  "websiteNote": "Client names and exact website counts are not listed on this site. Add verified figures to data/achievements.json when you are ready to publish them."
+}
