@@ -1,1 +1,110 @@
-[]
+[
+  {
+    "id": "aiml-virtual-internship",
+    "title": "AI-ML Virtual Internship",
+    "issuer": "AICTE - EduSkills",
+    "date": "January - March 2024",
+    "type": "Internship",
+    "description": "Successfully completed a 10-week AI-ML Virtual Internship supported by India Edu Program and Google for Developers.",
+    "image": "/certifications/aiml.jpeg"
+  },
+  {
+    "id": "business-growth-workshop",
+    "title": "Business Growth Workshop",
+    "issuer": "Digipreneur.ai",
+    "date": "2024",
+    "type": "Volunteer",
+    "description": "Certificate of Appreciation for volunteering and contributing to the Business Growth Workshop organized by Digipreneur.ai.",
+    "image": "/certifications/Cerificate - 2.0 Medium.jpeg"
+  },
+  {
+    "id": "metaloop-2k23",
+    "title": "METALOOP 2K23",
+    "issuer": "MLRIT-CIE & Deeploop Technologies",
+    "date": "October 6-7, 2023",
+    "type": "Hackathon",
+    "description": "Certificate of Participation for participating in METALOOP 2K23, a 36-hour national-level hackathon conducted by MLRIT-CIE in association with Deeploop Technologies.",
+    "image": "/certifications/certificate_1.JPG"
+  },
+  {
+    "id": "mru-national-hackathon",
+    "title": "National Level 24-Hour Hackathon",
+    "issuer": "Malla Reddy University",
+    "date": "February 9-10, 2024",
+    "type": "Hackathon",
+    "description": "Certificate of Participation recognizing participation in a National Level 24-Hour Hackathon hosted at Malla Reddy University.",
+    "image": "/certifications/certificate_2.JPG"
+  },
+  {
+    "id": "techspardha-web-thon",
+    "title": "Techspardha 2K24 - Web Thon",
+    "issuer": "Malla Reddy University",
+    "date": "2024",
+    "type": "Achievement",
+    "description": "Awarded 2nd prize in the Web Thon competition at Techspardha 2K24.",
+    "image": "/certifications/certificate_3.JPG"
+  },
+  {
+    "id": "thub-blitz-program",
+    "title": "BlitZ Program 2024-25",
+    "issuer": "T-Hub Hyderabad",
+    "date": "2024-25",
+    "type": "Program",
+    "description": "Successfully completed the BlitZ Program 2024-25 as a member of team Guidance 24/7.",
+    "image": "/certifications/certificate_4.JPG"
+  },
+  {
+    "id": "anwesha-logo-design",
+    "title": "Anwesha 2K22 - Logo Design",
+    "issuer": "Malla Reddy University",
+    "date": "December 24, 2022",
+    "type": "Achievement",
+    "description": "Won 1st prize in the Logo Design event at Anwesha 2K22.",
+    "image": "/certifications/certificate_5.JPG"
+  },
+  {
+    "id": "unnat-bharat-abhiyan",
+    "title": "Unnat Bharat Abhiyan",
+    "issuer": "Malla Reddy University",
+    "date": "December 24, 2022",
+    "type": "Participation",
+    "description": "Participated in Unnat Bharat Abhiyan activities at Gowdavally Village, Medchal-Malkajgiri District.",
+    "image": "/certifications/certificate_6.JPG"
+  },
+  {
+    "id": "deloitte-technology-job-simulation",
+    "title": "Technology Job Simulation",
+    "issuer": "Deloitte",
+    "date": "July 14, 2025",
+    "type": "Job Simulation",
+    "description": "Completed the Deloitte Technology Job Simulation through Forage, including practical tasks in coding and development.",
+    "image": "/certifications/del.png"
+  },
+  {
+    "id": "gen-ai-academy",
+    "title": "Gen AI Academy",
+    "issuer": "Google Cloud & H2S",
+    "date": "May 28, 2025",
+    "type": "AI",
+    "description": "Successfully completed the Gen AI Academy, gaining foundational knowledge and practical skills with Generative AI tools and platforms including Vertex AI, Gemini APIs, Imagen, Streamlit and Multimodal RAG.",
+    "image": "/certifications/genai.jpeg"
+  },
+  {
+    "id": "nsdc-web-design-development",
+    "title": "Web Design & Development",
+    "issuer": "NSDC - Skill India Digital Hub",
+    "date": "July 18, 2025",
+    "type": "Web Development",
+    "description": "Successfully completed the online skilling course on Web Design & Development offered by NSDC through Skill India Digital Hub.",
+    "image": "/certifications/nsdc.jpeg"
+  },
+  {
+    "id": "nspe-membership",
+    "title": "National Society of Professional Engineers Membership",
+    "issuer": "National Society of Professional Engineers",
+    "date": "2025",
+    "type": "Membership",
+    "description": "Certificate of Membership recognizing commitment to professional engineering practice and the NSPE Code of Ethics.",
+    "image": "/certifications/nspe.jpeg"
+  }
+]
