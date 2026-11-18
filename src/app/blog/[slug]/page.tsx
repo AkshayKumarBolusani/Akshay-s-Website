@@ -6,7 +6,8 @@ import { ArrowLeft, Clock, Calendar, Tag, ArrowUpRight } from "lucide-react";
 import { getBlogPost, getBlogSlugs, getBlogPosts } from "@/lib/data";
 import { site } from "@/lib/site";
 import { toSchemaDateTime } from "@/lib/utils";
-import { Reveal } from "@/components/Reveal";
+import { FadeUp as Reveal } from "@/components/ui/motion";
+import { ReadingProgress } from "@/components/blog/ReadingProgress";
 
 export const dynamicParams = false;
 
@@ -109,23 +110,19 @@ export default async function BlogPostPage({
 
   return (
     <main className="relative">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60vh]">
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent" />
-      </div>
-
-      <article className="mx-auto max-w-3xl px-4 pb-24 pt-[max(6.5rem,env(safe-area-inset-top,0px)+5rem)] sm:px-5 sm:pb-28 sm:pt-28">
+      <ReadingProgress />
+      <article className="gutter mx-auto max-w-4xl pb-24 pt-28 sm:pt-36">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-faint transition-colors hover:text-fg"
+          className="inline-flex min-h-11 items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> BACK TO BLOG
+          <ArrowLeft className="h-3.5 w-3.5" /> All writing
         </Link>
 
         <Reveal className="mt-8">
           <div className="flex flex-wrap items-center gap-3">
             <span
-              className="rounded-full px-3 py-1 text-xs font-medium"
-              style={{ background: "rgba(124, 92, 255, 0.15)", color: "#7c5cff" }}
+              className="rounded-full bg-accent px-3 py-1 font-mono text-[0.72rem] font-bold uppercase tracking-[0.15em] text-ink"
             >
               {post.category}
             </span>
@@ -139,14 +136,14 @@ export default async function BlogPostPage({
             </span>
           </div>
 
-          <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+          <h1 className="mt-6 text-balance font-display text-4xl font-extrabold leading-[1] tracking-tight sm:text-6xl lg:text-7xl">
             {post.title}
           </h1>
 
-          <p className="mt-4 text-lg text-muted">{post.excerpt}</p>
+          <p className="mt-6 text-xl leading-snug text-fg/75">{post.excerpt}</p>
 
           <div className="mt-6 flex items-center gap-4">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full bg-gradient-to-br from-accent to-accent-2">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full bg-accent">
               {post.author.avatar ? (
                 <Image
                   src={post.author.avatar}
@@ -162,13 +159,13 @@ export default async function BlogPostPage({
             </div>
             <div>
               <p className="font-medium">{post.author.name}</p>
-              <p className="text-sm text-muted">Software Engineer & AI Engineer</p>
+              <p className="text-sm text-muted">AI &amp; Full-Stack Software Engineer</p>
             </div>
           </div>
         </Reveal>
 
         <Reveal className="mt-10">
-          <div className="relative aspect-[2/1] overflow-hidden rounded-2xl bg-bg-soft">
+          <div className="relative aspect-[2/1] overflow-hidden rounded-[1.5rem] border border-border bg-bg-soft">
             <Image
               src={post.thumbnail}
               alt={post.title}
@@ -181,7 +178,7 @@ export default async function BlogPostPage({
         </Reveal>
 
         <Reveal className="mt-12">
-          <div className="prose prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-h2:mt-10 prose-h2:text-2xl prose-h3:mt-8 prose-h3:text-xl prose-p:leading-relaxed prose-p:text-fg/85 prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-fg prose-code:rounded prose-code:bg-white/[0.05] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-accent-2 prose-pre:rounded-xl prose-pre:border prose-pre:border-border prose-pre:bg-bg-soft prose-li:text-fg/85 prose-img:rounded-xl">
+          <div className="prose-ak mx-auto max-w-[44rem] rounded-[1.5rem] bg-bg/80 p-0 backdrop-blur sm:p-2">
             {post.content.split("\n\n").map((paragraph, i) => {
               if (paragraph.startsWith("## ")) {
                 return (
@@ -254,19 +251,19 @@ export default async function BlogPostPage({
 
         {relatedPosts.length > 0 && (
           <div className="mt-16 border-t border-border pt-12">
-            <h2 className="section-label mb-6">Related Articles</h2>
+            <h2 className="eyebrow mb-6">Keep reading</h2>
             <div className="grid gap-4 sm:grid-cols-3">
               {relatedPosts.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="group rounded-xl border border-border bg-white/[0.02] p-4 transition-colors hover:border-accent/30 hover:bg-white/[0.04]"
+                  className="group rounded-[1.25rem] border border-border bg-bg/80 p-5 transition-colors hover:border-accent"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted">{p.category}</span>
                     <ArrowUpRight className="h-4 w-4 text-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg" />
                   </div>
-                  <p className="mt-2 line-clamp-2 text-sm font-medium">{p.title}</p>
+                  <p className="mt-3 line-clamp-3 font-display text-lg font-bold leading-tight group-hover:text-accent">{p.title}</p>
                 </Link>
               ))}
             </div>

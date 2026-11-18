@@ -3,7 +3,7 @@ import { getProjects, getBlogPosts } from "@/lib/data";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastBuildDate = new Date("2026-06-04T00:00:00Z");
+  const lastBuildDate = new Date("2026-11-18T00:00:00Z");
   
   const projectsData = getProjects();
   const projects = projectsData.map((p) => {
@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${site.url}/project/${p.slug}`,
       lastModified: yearDate > lastBuildDate ? lastBuildDate : yearDate,
       changeFrequency: "monthly" as const,
-      priority: p.featured ? 0.9 : 0.7,
+      priority: p.featured ? 0.8 : 0.6,
     };
   });
 
@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...["/work", "/ventures", "/about", "/contact"].map((path) => ({
+      url: `${site.url}${path}`,
+      lastModified: lastBuildDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
     {
       url: `${site.url}/blog`,
       lastModified: lastBuildDate,

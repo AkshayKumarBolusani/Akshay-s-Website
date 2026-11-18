@@ -1,47 +1,80 @@
 [
   {
-    "year": "2022",
-    "title": "The Beginning",
+    "year": "2020",
+    "title": "Foundations",
     "paragraphs": [
-      "Started my professional journey as a Web Development Intern at Digital Connect while completing my B.Tech in Computer Science.",
-      "Worked on real client projects, learned industry workflows, and contributed to website design, development, and deployment."
+      "Started Intermediate (MPC) at Sri Chaitanya Junior Kalasala, Hyderabad — finished with 975 / 1000."
     ],
-    "tags": ["Web Development", "Client Projects", "UI/UX"]
+    "tags": [
+      "Maths",
+      "Physics",
+      "Chemistry"
+    ]
+  },
+  {
+    "year": "2022",
+    "title": "Enter Computer Science",
+    "paragraphs": [
+      "Began B.Tech in Computer Science and Engineering at Malla Reddy University.",
+      "Won 1st prize in Logo Design at Anwesha 2K22 and was elected Class Representative for 90+ students."
+    ],
+    "tags": [
+      "B.Tech",
+      "Design",
+      "Leadership"
+    ]
   },
   {
     "year": "2023",
-    "title": "Building Experience",
+    "title": "Shipping for real clients",
     "paragraphs": [
-      "Worked on a growing number of client websites and web applications while strengthening full-stack development skills.",
-      "Gained experience in frontend development, backend integration, API implementation, and project delivery."
+      "Joined Digital Connect as a Web Development Intern in August — the start of 100+ client websites across healthcare, education, real estate and business.",
+      "Competed in METALOOP 2K23, a 36-hour national hackathon."
     ],
-    "tags": ["Full Stack Development", "React", "Web Applications"]
+    "tags": [
+      "Web Development",
+      "Client Projects",
+      "Hackathons"
+    ]
   },
   {
     "year": "2024",
-    "title": "Exploring Artificial Intelligence",
+    "title": "Founder mode",
     "paragraphs": [
-      "Expanded into Artificial Intelligence and Machine Learning through internships, certifications, and hands-on projects.",
-      "Built applications involving recommendation systems, predictive analytics, and intelligent automation."
+      "Founded ProjectKaro in January — a software studio that has since shipped 60+ projects with a team of 23.",
+      "Elected Vice President of the CSE department, representing 700+ students. Won 2nd prize at Techspardha Web Thon and completed T-Hub's BlitZ program and the AICTE AI-ML virtual internship."
     ],
-    "tags": ["Artificial Intelligence", "Machine Learning", "Data Science"]
+    "tags": [
+      "ProjectKaro",
+      "Leadership",
+      "AI/ML"
+    ]
   },
   {
     "year": "2025",
-    "title": "Engineering Advanced Systems",
+    "title": "Going deep on AI",
     "paragraphs": [
-      "Developed research-oriented and production-grade projects across Computer Vision, Healthcare AI, Enterprise AI, Recommendation Systems, and Full Stack Platforms.",
-      "Worked on solutions involving Deep Learning, RAG systems, Generative AI, and domain-specific intelligent applications."
+      "Built SkinCare AI (DINOv2 + ResNet50), quantum-inspired research systems, RAG agents and full-stack health platforms.",
+      "Completed Google Cloud's Gen AI Academy and the Deloitte Technology Job Simulation."
     ],
-    "tags": ["Computer Vision", "Generative AI", "Enterprise AI", "Research Projects"]
+    "tags": [
+      "Computer Vision",
+      "Generative AI",
+      "Research"
+    ]
   },
   {
     "year": "2026",
-    "title": "The Next Chapter",
+    "title": "Graduate. Publish. Build local-first AI.",
     "paragraphs": [
-      "Graduated with a Bachelor of Technology in Computer Science Engineering.",
-      "Actively seeking opportunities in Software Engineering, Full Stack Development, Artificial Intelligence, and Machine Learning while preparing for global academic and professional growth."
+      "Graduated B.Tech with a CGPA of 8.97 and presented a research paper at PiCET 2026 (Scopus-indexed IET proceedings).",
+      "Shipped Cognora AI and India Invoice AI — local-first, citation-backed, review-first AI — and built an enterprise SOC lab."
     ],
-    "tags": ["Software Engineering", "Artificial Intelligence", "Cybersecurity", "Global Opportunities"]
+    "tags": [
+      "Research",
+      "RAG",
+      "Open Source",
+      "Security"
+    ]
   }
 ]

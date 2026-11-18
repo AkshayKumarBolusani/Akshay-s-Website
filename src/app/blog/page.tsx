@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { ArrowUpRight, Clock, Calendar } from "lucide-react";
 import { getBlogPosts } from "@/lib/data";
 import { site } from "@/lib/site";
+import { breadcrumbLd, pageMeta } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
 import { toSchemaDateTime } from "@/lib/utils";
-import { Reveal } from "@/components/Reveal";
+import { FadeUp, SplitReveal } from "@/components/ui/motion";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Technical insights on AI, machine learning, full-stack development, and software engineering by Akshay Kumar Bolusani.",
-  alternates: { canonical: "/blog" },
-  openGraph: {
-    title: "Blog — Akshay Kumar Bolusani",
-    description: "Technical insights on AI, machine learning, full-stack development, and software engineering.",
-    url: `${site.url}/blog`,
-  },
-};
+export const metadata: Metadata = pageMeta({
+  title: "Writing — Notes on AI & Engineering",
+  description:
+    "Deep dives on AI agents, RAG, LLM inference, React and local-first software by Akshay Kumar Bolusani.",
+  path: "/blog",
+});
 
-function BlogCard({ post }: { post: ReturnType<typeof getBlogPosts>[0] }) {
+function BlogCard({ post, big }: { post: ReturnType<typeof getBlogPosts>[0]; big?: boolean }) {
   const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -28,27 +26,24 @@ function BlogCard({ post }: { post: ReturnType<typeof getBlogPosts>[0] }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white/[0.02] transition-all duration-300 hover:border-accent/30 hover:bg-white/[0.04]"
+      className={`group flex flex-col overflow-hidden rounded-[1.5rem] border border-border bg-bg/80 backdrop-blur transition-colors duration-500 hover:border-accent ${big ? "lg:flex-row" : ""}`}
+      data-cursor="Read"
     >
-      <div className="relative aspect-[16/9] overflow-hidden bg-bg-soft">
+      <div className={`relative overflow-hidden bg-bg-soft ${big ? "aspect-[16/9] lg:aspect-auto lg:w-[58%]" : "aspect-[16/10]"}`}>
         <Image
           src={post.thumbnail}
           alt={post.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover grayscale-[40%] transition-[transform,filter] duration-700 group-hover:scale-105 group-hover:grayscale-0"
+          sizes={big ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg/60 to-transparent" />
-        <span
-          className="absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-medium backdrop-blur-md"
-          style={{ background: "rgba(124, 92, 255, 0.2)", color: "#7c5cff" }}
-        >
+        <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 font-mono text-[0.72rem] font-bold uppercase tracking-[0.15em] text-ink">
           {post.category}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <div className="flex items-center gap-3 text-xs text-muted">
+      <div className={`flex flex-1 flex-col p-6 ${big ? "sm:p-10" : "sm:p-7"}`}>
+        <div className="flex items-center gap-4 font-mono text-[0.72rem] uppercase tracking-[0.15em] text-muted">
           <span className="flex items-center gap-1.5">
             <Calendar className="h-3.5 w-3.5" />
             {formattedDate}
@@ -58,25 +53,13 @@ function BlogCard({ post }: { post: ReturnType<typeof getBlogPosts>[0] }) {
             {post.readTime}
           </span>
         </div>
-
-        <h2 className="mt-3 text-lg font-semibold leading-snug tracking-tight transition-colors group-hover:text-accent">
+        <h2 className={`mt-4 font-display font-bold leading-[1.05] tracking-tight transition-colors group-hover:text-accent ${big ? "text-3xl sm:text-5xl" : "text-2xl"}`}>
           {post.title}
         </h2>
-
-        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
-          {post.excerpt}
-        </p>
-
-        <div className="mt-auto flex flex-wrap gap-2 pt-5">
-          {post.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-border bg-white/[0.02] px-2.5 py-1 text-[0.65rem] text-muted"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        <p className={`mt-3 text-muted ${big ? "text-lg" : "line-clamp-2 text-sm"}`}>{post.excerpt}</p>
+        <span className="mt-auto inline-flex items-center gap-2 pt-6 font-mono text-[0.72rem] uppercase tracking-[0.2em] text-fg/80 group-hover:text-accent">
+          Read <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+        </span>
       </div>
     </Link>
   );
@@ -110,49 +93,32 @@ export default function BlogPage() {
   };
 
   return (
-    <main className="relative">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[50vh]">
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent" />
+    <main className="gutter relative pb-24 pt-28 sm:pt-36">
+      <p className="eyebrow">Writing · {posts.length} posts</p>
+      <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
+        <h1 className="display-xl max-w-full min-w-0 text-[20vw] leading-[0.8] sm:text-[14vw]">
+          <SplitReveal text="Notes" />
+        </h1>
+        <p className="mb-3 max-w-sm text-lg text-fg/75">
+          Deep dives on AI agents, RAG, inference, React and the craft of shipping software.
+        </p>
       </div>
 
-      <article className="mx-auto max-w-6xl px-4 pb-24 pt-[max(6.5rem,env(safe-area-inset-top,0px)+5rem)] sm:px-5 sm:pb-28 sm:pt-28">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-faint transition-colors hover:text-fg"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" /> BACK HOME
-        </Link>
+      {posts[0] && (
+        <FadeUp className="mt-14">
+          <BlogCard post={posts[0]} big />
+        </FadeUp>
+      )}
 
-        <Reveal className="mt-8">
-          <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-            Blog & <span className="gradient-text">Technical Writing</span>
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
-            Deep dives into AI, machine learning, full-stack development, and software engineering best practices.
-          </p>
-        </Reveal>
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.slice(1).map((post, i) => (
+          <FadeUp key={post.slug} delay={(i % 3) * 0.06}>
+            <BlogCard post={post} />
+          </FadeUp>
+        ))}
+      </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, i) => (
-            <Reveal key={post.slug} delay={i * 0.05}>
-              <BlogCard post={post} />
-            </Reveal>
-          ))}
-        </div>
-
-        {posts.length === 0 && (
-          <Reveal className="mt-12">
-            <div className="rounded-2xl border border-border bg-white/[0.02] p-12 text-center">
-              <p className="text-muted">No blog posts yet. Check back soon!</p>
-            </div>
-          </Reveal>
-        )}
-      </article>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogLd) }}
-      />
+      <JsonLd data={[blogLd, breadcrumbLd([{ name: "Writing", path: "/blog" }])]} />
     </main>
   );
 }

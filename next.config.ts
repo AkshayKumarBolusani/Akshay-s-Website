@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
@@ -41,24 +43,24 @@ const nextConfig: NextConfig = {
         },
       ],
     },
-    {
-      source: "/(.*).(js|css|woff|woff2|ttf|eot)",
-      headers: [
-        {
-          key: "Cache-Control",
-          value: "public, max-age=31536000, immutable",
-        },
-      ],
-    },
-    {
-      source: "/(.*).(jpg|jpeg|png|gif|webp|avif|ico|svg)",
-      headers: [
-        {
-          key: "Cache-Control",
-          value: "public, max-age=31536000, immutable",
-        },
-      ],
-    },
+    // Cache rules are production-only. In dev they made the browser keep stale JS chunks for a year.
+    ...(isProd
+      ? [
+          {
+            // Next.js content-hashes everything under /_next/static, so it can be cached forever.
+            source: "/_next/static/(.*)",
+            headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+          },
+          {
+            // Files in /public keep the same name when you replace them (photos, icons, OG image),
+            // so cache for a day and let browsers refresh in the background.
+            source: "/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg)",
+            headers: [
+              { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+            ],
+          },
+        ]
+      : []),
     {
       source: "/llms.txt",
       headers: [

@@ -2,57 +2,153 @@
   "digitalConnect": {
     "company": "Digital Connect",
     "role": "Web Development Intern",
-    "period": "September 2022 – January 2026"
+    "period": "Aug 2023 – Jan 2026"
   },
   "education": {
-    "degree": "Bachelor of Technology in Computer Science Engineering",
+    "degree": "B.Tech, Computer Science and Engineering",
     "graduationYear": "2026"
   },
   "experience": [
     {
+      "role": "Founder & Software Engineer",
+      "organization": "ProjectKaro, Hyderabad",
+      "period": "Jan 2024 – Present",
+      "description": "Founded a software studio that has delivered 60+ projects: business websites, a startup MVP, and student and academic software and research projects. Leading a team of 23 (developers, IoT team, interns and campus ambassadors) across client communication, planning, architecture, deployment and support."
+    },
+    {
       "role": "Web Development Intern",
       "organization": "Digital Connect",
-      "period": "September 2022 – January 2026",
-      "description": "Client websites and web applications — design, development, API integration, and deployment while completing B.Tech in Computer Science."
+      "period": "Aug 2023 – Jan 2026",
+      "description": "Built and maintained 100+ responsive websites for clients in healthcare, education, real estate and business, working directly with clients from requirements to post-deployment support."
     }
   ],
   "projectKaro": {
     "name": "ProjectKaro",
-    "tagline": "Professional services platform for technical solutions",
+    "tagline": "A software studio turning ideas into shipped products",
     "url": "https://projectkaro.com",
-    "description": "ProjectKaro is a professional services platform through which clients can request website development, AI solutions, full-stack applications, research projects, and technical consulting. It serves as the bridge between technical skills and real-world client delivery.",
+    "description": "ProjectKaro is the software studio I founded in January 2024. We've delivered 60+ projects — business websites, a startup MVP, student and academic software, and research projects — with a team of 23 developers, an IoT team, interns and campus ambassadors.",
     "services": [
-      "Website Development",
-      "Personal Portfolio Websites",
-      "Full Stack Applications",
-      "AI Solutions",
-      "Student Major Projects",
-      "Student Minor Projects",
-      "Research Projects",
-      "Startup MVP Development",
-      "Business Websites",
-      "Technical Consulting"
+      "Business websites",
+      "Startup MVPs",
+      "Student and academic software",
+      "Research projects"
     ],
     "process": [
-      { "step": "01", "title": "Requirement Analysis", "description": "Understanding project scope, goals, and technical needs" },
-      { "step": "02", "title": "Planning & Design", "description": "Architecture design, wireframes, and technical specifications" },
-      { "step": "03", "title": "Development", "description": "Building with modern tech stack and best practices" },
-      { "step": "04", "title": "Testing & Review", "description": "Quality assurance, client feedback, and iterations" },
-      { "step": "05", "title": "Delivery & Support", "description": "Deployment, documentation, and ongoing support" }
+      {
+        "step": "01",
+        "title": "Requirement Analysis",
+        "description": "Understanding project scope, goals, and technical needs"
+      },
+      {
+        "step": "02",
+        "title": "Planning & Design",
+        "description": "Architecture design, wireframes, and technical specifications"
+      },
+      {
+        "step": "03",
+        "title": "Development",
+        "description": "Building with modern tech stack and best practices"
+      },
+      {
+        "step": "04",
+        "title": "Testing & Review",
+        "description": "Quality assurance, client feedback, and iterations"
+      },
+      {
+        "step": "05",
+        "title": "Delivery & Support",
+        "description": "Deployment, documentation, and ongoing support"
+      }
     ],
     "impact": [
-      { "label": "300+ Clients", "note": "Happy clients served" },
-      { "label": "60+ Projects", "note": "College & academic projects" },
-      { "label": "10 Services", "note": "Offered across all domains" }
-    ]
+      {
+        "label": "60+ Projects",
+        "note": "Business websites, a startup MVP, student and research work"
+      },
+      {
+        "label": "23 People",
+        "note": "Developers, IoT team, interns and campus ambassadors"
+      }
+    ],
+    "since": "Jan 2024"
   },
   "websiteIndustries": [
     "Healthcare",
     "Education",
+    "Real Estate",
     "Startups",
     "Events",
     "Personal Brands",
     "Business"
   ],
-  "websiteNote": "Client names and exact website counts are not listed on this site. Add verified figures to data/achievements.json when you are ready to publish them."
+  "websiteNote": "Client names and exact website counts are not listed on this site. Add verified figures to data/achievements.json when you are ready to publish them.",
+  "educationList": [
+    {
+      "title": "B.Tech, Computer Science and Engineering",
+      "org": "Malla Reddy University, Hyderabad",
+      "period": "2022 – 2026",
+      "score": "CGPA 8.97 / 10"
+    },
+    {
+      "title": "Intermediate (MPC)",
+      "org": "Sri Chaitanya Junior Kalasala, Hyderabad",
+      "period": "2020 – 2022",
+      "score": "975 / 1000"
+    }
+  ],
+  "leadership": [
+    {
+      "title": "Research paper at PiCET 2026",
+      "detail": "Presented “Soil Contamination Detection Using Hybrid Machine Learning Models” — Scopus-indexed IET Conference Proceedings, Parul University.",
+      "year": "2026",
+      "kind": "Research"
+    },
+    {
+      "title": "Vice President, Dept. of CSE",
+      "detail": "Elected to represent 700+ students; organised technical events, hackathons and workshops.",
+      "year": "2024–25",
+      "kind": "Leadership"
+    },
+    {
+      "title": "Class Representative",
+      "detail": "Represented 90+ students as the communication link with faculty.",
+      "year": "2022–23",
+      "kind": "Leadership"
+    }
+  ],
+  "gopyata": {
+    "name": "Gopyata",
+    "tagline": "Privacy readiness, made practical.",
+    "status": "Live",
+    "url": "https://gopyata.in",
+    "pending": false,
+    "description": "Gopyata helps Indian businesses get ready for the DPDP (Digital Personal Data Protection) framework. It maps the personal data an organisation handles, flags what deserves attention first, and suggests practical next steps in plain English.",
+    "audiences": [
+      "Coaching institutes",
+      "Schools and education",
+      "Clinics and practices",
+      "Small businesses"
+    ],
+    "offerings": [
+      {
+        "step": "01",
+        "name": "Readiness Report",
+        "tag": "Free",
+        "detail": "A structured starting point: context-led review prompts, areas to investigate and suggested next steps, from business-level details only."
+      },
+      {
+        "step": "02",
+        "name": "Readiness Setup",
+        "tag": "Hands-on",
+        "detail": "Help turning review findings into clearer processes and working documentation, with scope agreed to your needs."
+      },
+      {
+        "step": "03",
+        "name": "Monthly Care",
+        "tag": "Ongoing",
+        "detail": "A regular touchpoint to review changes, maintain processes and keep open actions moving."
+      }
+    ],
+    "disclaimer": "A readiness aid: not a legal opinion, certification or compliance guarantee."
+  }
 }

@@ -14,10 +14,10 @@ type Msg = {
 };
 
 const SUGGESTIONS = [
-  "What projects has Akshay built?",
-  "Tell me about SkinCare AI",
-  "How many websites has Akshay developed?",
-  "What AI/ML work has he done?",
+  "What have you built?",
+  "Tell me about Cognora AI",
+  "Which websites have you built?",
+  "How can I hire you?",
 ];
 
 export function AskAkshayAI({ index }: { index: SearchIndex }) {
@@ -26,7 +26,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "ai",
-      text: "Hi — I'm Akshay AI. Ask me anything about Akshay's projects, websites, experience, or how to get in touch.",
+      text: "Hi, I'm Akshay. Ask me about my projects, the websites I've built, ProjectKaro, Gopyata, or how to reach me.",
     },
   ]);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -117,7 +117,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.2 }}
         className={cn(
-          "fixed z-[80] flex max-w-[calc(100vw-2rem)] items-center gap-2 rounded-full bg-fg px-4 py-3 text-sm font-semibold text-bg shadow-lg shadow-accent/20 transition-transform active:scale-95 sm:hover:scale-105",
+          "fixed z-[80] flex max-w-[calc(100vw-2rem)] items-center gap-2 rounded-full bg-fg p-3.5 text-sm font-semibold sm:px-4 sm:py-3 text-bg shadow-lg shadow-accent/20 transition-transform active:scale-95 sm:hover:scale-105",
           "bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))]",
           open && "pointer-events-none opacity-0",
         )}
@@ -125,8 +125,8 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <Sparkles className="h-4 w-4 shrink-0" />
-        <span className="truncate">Ask Akshay AI</span>
+        <Sparkles className="h-5 w-5 shrink-0 sm:h-4 sm:w-4" />
+        <span className="hidden truncate sm:inline">Ask Akshay AI</span>
       </motion.button>
 
       <AnimatePresence>
@@ -155,7 +155,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
               }}
               role="dialog"
               aria-modal="true"
-              aria-label="Akshay AI assistant"
+              aria-label="Ask Akshay: automated assistant that answers from my portfolio"
             >
               <div className="flex items-center justify-between border-b border-border px-5 py-4">
                 <div className="flex items-center gap-2">
@@ -163,7 +163,8 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
                     <Sparkles className="h-3.5 w-3.5" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold">Akshay AI</p>
+                    <p className="text-sm font-semibold">Ask Akshay</p>
+                    <p className="text-[0.72rem] text-muted">Automated answers from my portfolio</p>
                   </div>
                 </div>
                 <button
@@ -233,7 +234,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask about Akshay…"
+                  placeholder="Ask me anything…"
                   aria-label="Ask a question"
                   className="flex-1 rounded-full border border-border bg-bg px-4 py-2.5 text-sm outline-none placeholder:text-faint focus:border-accent/50"
                 />

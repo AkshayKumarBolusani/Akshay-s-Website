@@ -1,60 +1,61 @@
-import dynamic from "next/dynamic";
-import { Hero } from "@/components/Hero";
+import { Hero } from "@/components/home/Hero";
+import { Manifesto } from "@/components/home/Manifesto";
+import { Stats } from "@/components/home/Stats";
+import { WorkReel } from "@/components/home/WorkReel";
+import { Ventures } from "@/components/home/Ventures";
+import { Journey } from "@/components/home/Journey";
+import { Lab } from "@/components/home/Lab";
+import { Wall } from "@/components/home/Wall";
+import { Voices } from "@/components/home/Voices";
+import { Writing } from "@/components/home/Writing";
 import {
   getTimeline,
   getCertifications,
-  getMediaImages,
-  getAchievements,
   getProfile,
   getProjects,
-  getResumeFile,
-  hasProfileImage,
   getProfileImagePath,
   getBlogPosts,
-  getTestimonials,
+  getClients,
 } from "@/lib/data";
 import { site } from "@/lib/site";
+import type { Metadata } from "next";
 
-const About = dynamic(() => import("@/components/About").then((m) => ({ default: m.About })));
-const ProjectVault = dynamic(() =>
-  import("@/components/ProjectVault").then((m) => ({ default: m.ProjectVault })),
-);
-const WebsiteShowcase = dynamic(() =>
-  import("@/components/WebsiteShowcase").then((m) => ({ default: m.WebsiteShowcase })),
-);
-const ProjectKaro = dynamic(() =>
-  import("@/components/ProjectKaro").then((m) => ({ default: m.ProjectKaro })),
-);
-const BlogSection = dynamic(() =>
-  import("@/components/BlogSection").then((m) => ({ default: m.BlogSection })),
-);
-const Testimonials = dynamic(() =>
-  import("@/components/Testimonials").then((m) => ({ default: m.Testimonials })),
-);
-const Certifications = dynamic(() =>
-  import("@/components/Certifications").then((m) => ({ default: m.Certifications })),
-);
-const MediaGallery = dynamic(() =>
-  import("@/components/MediaGallery").then((m) => ({ default: m.MediaGallery })),
-);
-const Recruiter = dynamic(() =>
-  import("@/components/Recruiter").then((m) => ({ default: m.Recruiter })),
-);
-const Contact = dynamic(() =>
-  import("@/components/Contact").then((m) => ({ default: m.Contact })),
-);
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   const projects = getProjects();
   const timeline = getTimeline();
   const certs = getCertifications();
-  const media = getMediaImages();
-  const ach = getAchievements();
   const profile = getProfile();
   const projectCount = projects.length;
-  const resume = getResumeFile();
   const blogPosts = getBlogPosts();
-  const testimonials = getTestimonials();
+  const clients = getClients();
+
+  const reel = projects
+    .filter((p) => p.featured)
+    .slice(0, 8)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      tagline: p.tagline,
+      category: p.category,
+      year: p.year,
+      accent: p.accent,
+      tech: p.tech,
+      metrics: p.metrics,
+      image: p.images[0],
+    }));
+
+  const stats = [
+    { value: 60, suffix: "+", label: "Projects delivered", note: "Web, AI, academic and startup builds" },
+    { value: 100, suffix: "+", label: "Websites built", note: "Healthcare, education, real estate and business" },
+    { value: 23, label: "Team members", note: "Developers, IoT team, interns and campus ambassadors" },
+    { value: 8.97, decimals: 2, label: "CGPA", note: "B.Tech CSE, Malla Reddy University (2022–26)" },
+    { value: 700, suffix: "+", label: "Students led", note: "As elected Vice President, Dept. of CSE" },
+    { value: projectCount, label: "In the archive", note: "AI, research, security and full-stack builds" },
+  ];
 
   const faqLd = {
     "@context": "https://schema.org",
@@ -65,7 +66,7 @@ export default function Home() {
         name: "Who is Akshay Kumar Bolusani?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Akshay Kumar Bolusani is a Software Engineer, Full Stack Developer, and AI/ML Engineer based in Hyderabad, India. He specializes in building innovative solutions using Next.js, React, Python, and machine learning frameworks. B.Tech graduate in Computer Science Engineering, with experience as a Web Development Intern at Digital Connect, he has delivered 100+ websites and ${projectCount}+ technical projects.`,
+          text: `Akshay Kumar Bolusani is an AI & Full-Stack Software Engineer based in Hyderabad, India, focused on local-first, citation-backed AI systems such as Cognora AI and India Invoice AI. He founded ProjectKaro (60+ projects, team of 23), built 100+ websites as a Web Development Intern at Digital Connect, and graduated B.Tech CSE from Malla Reddy University with a CGPA of 8.97.`,
         },
       },
       {
@@ -81,7 +82,7 @@ export default function Home() {
         name: "What kind of projects does Akshay build?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Akshay's portfolio documents ${projectCount} projects spanning: AI & Machine Learning (computer vision, NLP, deep learning), LLM/RAG Systems (enterprise knowledge management, chatbots), Healthcare AI (medical imaging, disease detection), Full-Stack Applications (e-commerce, dashboards, APIs), and Research Projects (quantum computing, recommendation systems).`,
+          text: `Akshay's portfolio documents ${projectCount} projects spanning: applied AI (retrieval-augmented document Q&A, GST invoice intelligence, skin disease detection), security (a SOC lab and phishing detection), full-stack applications and websites, and research (hybrid machine learning for soil contamination, quantum-inspired drug discovery).`,
         },
       },
       {
@@ -105,7 +106,15 @@ export default function Home() {
         name: "What is ProjectKaro?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "ProjectKaro (projectkaro.com) is a professional services platform founded by Akshay Kumar Bolusani. Services include: Website Development, AI/ML Solutions, Full-Stack Applications, Technical Consulting, Student Project Assistance (major/minor projects), Startup MVP Development, and Research Projects. Industries served include Healthcare, Education, E-commerce, and Startups.",
+          text: "ProjectKaro (projectkaro.com) is a software studio founded by Akshay Kumar Bolusani in January 2024 that has delivered 60+ projects with a team of 23. It builds business websites, startup MVPs, and student and academic software and research projects.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is Gopyata?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Gopyata (gopyata.in) is a privacy-readiness service for Indian businesses, founded by Akshay Kumar Bolusani. It helps coaching institutes, schools, clinics and small businesses understand the personal data they handle under India's DPDP framework, with a free readiness report, hands-on setup and monthly care. It is a readiness aid, not legal advice or a compliance guarantee.",
         },
       },
       {
@@ -113,7 +122,7 @@ export default function Home() {
         name: "What are Akshay Kumar Bolusani's notable AI projects?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Notable AI projects include: SkinCare AI (CNN-based skin disease detection with 92.6% accuracy), Hybrid Quantum GAN Drug Discovery (quantum-classical ML for molecule generation), Pharmaceutical Compliance Agent (RAG-based regulatory system), AI Interview Bot (LLM-powered technical interviews), and E-Commerce Recommendation System (hybrid collaborative filtering).",
+          text: "Notable projects include: Shapeshift (free, offline, open-source file converter for macOS), Cognora AI (local-first retrieval-augmented document Q&A with per-page citations), India Invoice AI (open-source, review-first GST invoice intelligence), SkinCare AI (CNN-based skin disease detection with 92.6% accuracy), Hybrid Quantum GAN Drug Discovery (quantum-classical ML for molecule generation), Pharmaceutical Compliance Agent (RAG-based regulatory system), and AI Interview Bot (LLM-powered technical interviews).",
         },
       },
       {
@@ -129,7 +138,7 @@ export default function Home() {
         name: "What is Akshay Kumar Bolusani's educational background?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Akshay holds a Bachelor of Technology (B.Tech) in Computer Science Engineering, graduated in 2026. His coursework included data structures, algorithms, machine learning, computer networks, and database systems.",
+          text: "Akshay holds a Bachelor of Technology (B.Tech) in Computer Science Engineering, from Malla Reddy University, Hyderabad (2022–2026, CGPA 8.97). He presented a research paper on soil contamination detection with hybrid ML models at PiCET 2026 (Scopus-indexed IET proceedings).",
         },
       },
       {
@@ -158,70 +167,27 @@ export default function Home() {
     })),
   };
 
-  const howToLd = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Hire Akshay Kumar Bolusani for Your Project",
-    description: "Steps to engage Akshay for software development, AI/ML, or consulting services",
-    totalTime: "PT24H",
-    step: [
-      {
-        "@type": "HowToStep",
-        position: 1,
-        name: "Review Portfolio",
-        text: "Browse the project gallery to understand Akshay's expertise and past work in AI, ML, and full-stack development.",
-        url: `${site.url}/#projects`,
-      },
-      {
-        "@type": "HowToStep",
-        position: 2,
-        name: "Check Services",
-        text: "Visit ProjectKaro to see available services including website development, AI solutions, and technical consulting.",
-        url: `${site.url}/#projectkaro`,
-      },
-      {
-        "@type": "HowToStep",
-        position: 3,
-        name: "Get in Touch",
-        text: "Contact via email at akshaykumarbolusani@gmail.com or use the contact form with your project requirements.",
-        url: `${site.url}/#contact`,
-      },
-      {
-        "@type": "HowToStep",
-        position: 4,
-        name: "Discuss Requirements",
-        text: "Schedule a consultation to discuss project scope, timeline, and technical approach.",
-      },
-      {
-        "@type": "HowToStep",
-        position: 5,
-        name: "Start Collaboration",
-        text: "Begin the development process with clear milestones and regular communication.",
-      },
-    ],
-  };
-
   return (
     <main className="relative">
-      <Hero hasImage={hasProfileImage()} imageSrc={getProfileImagePath()} projectCount={projectCount} />
-      <About timeline={timeline} />
-      <ProjectVault projects={projects} />
-      <WebsiteShowcase
-        categories={ach.websiteCategories}
-        totalWebsites={ach.websiteStudio.totalWebsites}
+      <Hero imageSrc={getProfileImagePath()} />
+      <Manifesto />
+      <Stats stats={stats} />
+      <WorkReel projects={reel} total={projectCount} />
+      {profile.projectKaro && <Ventures pk={profile.projectKaro} gopyata={profile.gopyata} />}
+      <Journey timeline={timeline} />
+      <Lab />
+      <Wall certs={certs} highlights={profile.leadership ?? []} />
+      <Voices clients={clients} />
+      <Writing
+        posts={blogPosts.slice(0, 5).map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          category: p.category,
+          readTime: p.readTime,
+          publishedAt: p.publishedAt,
+          thumbnail: p.thumbnail,
+        }))}
       />
-      {profile.projectKaro && <ProjectKaro data={profile.projectKaro} />}
-      <BlogSection posts={blogPosts} />
-      <Testimonials testimonials={testimonials} />
-      <Certifications certs={certs} />
-      <MediaGallery images={media} />
-      <Recruiter
-        skills={ach.skills}
-        resume={resume}
-        profile={profile}
-        projectCount={projectCount}
-      />
-      <Contact />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
@@ -229,10 +195,6 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }}
       />
     </main>
   );

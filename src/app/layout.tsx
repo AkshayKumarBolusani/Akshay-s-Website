@@ -1,21 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Syne, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { toSchemaDateTime } from "@/lib/utils";
-import { CommandCenter } from "@/components/CommandCenter";
+import { Experience } from "@/components/shell/Experience";
+import { Footer } from "@/components/shell/Footer";
 import { LazyAskAkshayAI } from "@/components/LazyAskAkshayAI";
 import { getProjects, getAchievements, getProfile } from "@/lib/data";
 import { buildSearchIndex } from "@/lib/search";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const display = Syne({ variable: "--nf-display", subsets: ["latin"], weight: ["500", "700", "800"], display: "swap" });
+const body = Space_Grotesk({ variable: "--nf-body", subsets: ["latin"], display: "swap" });
+const mono = JetBrains_Mono({ variable: "--nf-mono", subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#05060a" },
-  ],
+  themeColor: "#060607",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -26,33 +25,22 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Software Engineer & AI/ML Engineer | ${site.brand}`,
+    default: `${site.name} — AI & Full-Stack Software Engineer`,
     template: `%s — ${site.name}`,
   },
-  description: site.longDescription,
+  description: site.description,
   keywords: [...site.keywords],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/",
-    },
-  },
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   appleWebApp: {
     capable: true,
@@ -60,26 +48,21 @@ export const metadata: Metadata = {
     title: site.brand,
   },
   openGraph: {
-    type: "profile",
+    type: "website",
     locale: "en_US",
     url: site.url,
     siteName: site.brand,
-    title: `${site.name} — Software Engineer & AI/ML Engineer`,
-    description: site.longDescription,
-    images: [
-      { url: site.ogImage, width: 1200, height: 630, alt: `${site.name} - Portfolio` },
-      { url: site.image, width: 1200, height: 1200, alt: `${site.name} - Profile Photo` },
-    ],
-    firstName: "Akshay Kumar",
-    lastName: "Bolusani",
-    username: "akshaykumarbolusani",
+    title: `${site.name} — AI & Full-Stack Software Engineer`,
+    description: site.description,
+    images: [{ url: site.ogImage, width: 1200, height: 630, alt: `${site.name} — AI & Full-Stack Software Engineer, Hyderabad` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Software Engineer & AI/ML Engineer`,
-    description: site.longDescription,
+    title: `${site.name} — AI & Full-Stack Software Engineer`,
+    description: site.description,
     images: [site.ogImage],
     creator: "@akshay_bolusani",
+    site: "@akshay_bolusani",
   },
   robots: {
     index: true,
@@ -101,11 +84,7 @@ export const metadata: Metadata = {
     address: true,
     telephone: true,
   },
-  other: {
-    "google-site-verification": "googlee8f5c2d0e346274f",
-    "ai-content-declaration": "human-authored",
-    "content-language": "en-US",
-  },
+  other: { "content-language": "en-US" },
 };
 
 export default function RootLayout({
@@ -124,6 +103,8 @@ export default function RootLayout({
       tech: p.tech,
       description: p.description,
       metrics: p.metrics,
+      featured: p.featured,
+      clients: p.clients?.map((c) => ({ name: c.name, org: c.org })),
     })),
     achievements,
     profile,
@@ -140,11 +121,10 @@ export default function RootLayout({
     image: {
       "@type": "ImageObject",
       url: `${site.url}${site.image}`,
-      width: 400,
-      height: 400,
+      width: 1086,
+      height: 1448,
     },
-    jobTitle: "Software Engineer",
-    additionalName: "AI/ML Engineer",
+    jobTitle: "AI & Full-Stack Software Engineer",
     description: site.longDescription,
     email: `mailto:${site.email}`,
     birthPlace: {
@@ -158,14 +138,11 @@ export default function RootLayout({
       addressRegion: site.locationDetailed.state,
       addressCountry: site.locationDetailed.countryCode,
     },
-    worksFor: {
-      "@type": "Organization",
-      name: site.brand,
-      url: site.url,
-    },
+    worksFor: [{ "@id": `${site.url}/#organization` }, { "@id": `${site.url}/#gopyata` }],
+    sameAs: [site.socials.linkedin, site.socials.github, site.socials.instagram, site.socials.twitter, site.projectKaro.url],
     alumniOf: {
-      "@type": "EducationalOrganization",
-      name: site.education.degree,
+      "@type": "CollegeOrUniversity",
+      name: "Malla Reddy University",
     },
     hasOccupation: [
       {
@@ -192,11 +169,6 @@ export default function RootLayout({
       "@type": "Language",
       name: lang,
     })),
-    sameAs: [
-      site.socials.linkedin,
-      site.socials.github,
-      site.socials.instagram,
-    ],
   };
 
   const websiteLd = {
@@ -210,26 +182,18 @@ export default function RootLayout({
     inLanguage: "en-US",
     author: { "@id": `${site.url}/#person` },
     publisher: { "@id": `${site.url}/#person` },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${site.url}/?search={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   const profilePageLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "@id": `${site.url}/#profilepage`,
-    name: `${site.name}'s Portfolio`,
+    name: `${site.name} — Portfolio`,
     description: site.longDescription,
     url: site.url,
     mainEntity: { "@id": `${site.url}/#person` },
     dateCreated: toSchemaDateTime("2022-09-01"),
-    dateModified: toSchemaDateTime(new Date()),
+    dateModified: toSchemaDateTime("2026-11-18"),
   };
 
   const organizationLd = {
@@ -239,10 +203,11 @@ export default function RootLayout({
     name: site.projectKaro.name,
     alternateName: "ProjectKaro",
     url: site.projectKaro.url,
-    logo: `${site.url}/icon-512.png`,
+    logo: `${site.url}/icons/icon-512.png`,
     description: site.projectKaro.description,
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 23 },
     founder: { "@id": `${site.url}/#person` },
-    foundingDate: "2022-01-01",
+    foundingDate: "2024-01-01",
     foundingLocation: {
       "@type": "Place",
       address: {
@@ -291,17 +256,17 @@ export default function RootLayout({
     sameAs: [site.socials.linkedin, site.socials.github],
   };
 
-  const breadcrumbLd = {
+  const gopyataLd = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: site.url,
-      },
-    ],
+    "@type": "Organization",
+    "@id": `${site.url}/#gopyata`,
+    name: "Gopyata",
+    url: "https://gopyata.in",
+    slogan: "Privacy readiness, made practical.",
+    description:
+      "DPDP (Digital Personal Data Protection) readiness for Indian businesses: a free readiness report, hands-on setup and monthly care. A readiness aid, not legal advice.",
+    founder: { "@id": `${site.url}/#person` },
+    areaServed: "IN",
   };
 
   const speakableLd = {
@@ -318,56 +283,28 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <meta name="theme-color" content="#05060a" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="color-scheme" content="dark light" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content={site.brand} />
-        <meta name="apple-mobile-web-app-title" content={site.brand} />
-        <meta name="msapplication-TileColor" content="#7c5cff" />
+        <meta name="msapplication-TileColor" content="#C6FF3D" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-        <link rel="preload" as="image" href="/akshay.webp" type="image/webp" fetchPriority="high" />
         <link rel="author" href="/humans.txt" />
-        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs (full)" />
         <link rel="me" href={site.socials.linkedin} />
         <link rel="me" href={site.socials.github} />
+        <link rel="me" href={site.socials.twitter} />
       </head>
       <body className="grain antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-ink"
         >
           Skip to main content
         </a>
-        <a
-          href="#projects"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-16 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
-        >
-          Skip to projects
-        </a>
-        <a
-          href="#contact"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-28 focus:z-[100] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
-        >
-          Skip to contact
-        </a>
-        <CommandCenter />
-        <div id="main-content">
-          {children}
-        </div>
+        <Experience>
+          <div id="main-content">{children}</div>
+          <Footer />
+        </Experience>
         <LazyAskAkshayAI index={searchIndex} />
         <script
           type="application/ld+json"
@@ -387,7 +324,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(gopyataLd) }}
         />
         <script
           type="application/ld+json"

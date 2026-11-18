@@ -38,7 +38,6 @@ Rankings reflect **deduplicated** projects. Scores consider complexity, engineer
 | 1 | Hybrid Quantum GAN Drug Discovery | ML / Research / MLOps | End-to-end cheminformatics: quantum GAN, QSAR, toxicity, docking, RL, SHAP, Streamlit |
 | 2 | Skin Disease Prediction ViT (SkinCare AI) | CV / LLM / Full stack | Dual ViT+CNN models (documented 92.6%/91.8%), FastAPI, Groq medical chat |
 | 3 | RXShield AI (`new projects/medical`) | Full stack / HealthTech | Next.js + Express/Prisma + FastAPI risk engine monorepo |
-| 4 | Ecommerce Product Recommendation | ML / Full stack | NCF + Q-learning hybrid recommender; FastAPI + Streamlit |
 | 5 | Externify (Production Monorepo) | Full stack / SaaS | Multi-service, AWS deployment guides, security checklists |
 | 6 | MRI Multimodal Epilepsy GNN | ML / Research | EEG+MRI graph fusion, Streamlit, trained artifacts |
 | 7 | Pharmaceutical Regulatory Compliance Agent | LLM / RAG / Enterprise | ChromaDB RAG, compliance agent, FastAPI demo UI |
@@ -379,51 +378,6 @@ Production-style health-tech monorepo with decoupled risk scoring API and docume
 ## Project Evidence
 
 - `README.md`, `package.json`, `backend/`, `frontend/`, `risk-engine/`, `infra/docker/docker-compose.yml`
-
----
-
-# Ecommerce Product Recommendation (Hybrid ML)
-
-## Overview
-
-Full-stack e-commerce demo with **Neural Collaborative Filtering** + **Q-Learning** hybrid recommendations, behavior tracking, cart, and Streamlit UI calling FastAPI backend.
-
-## Project Type
-
-Full Stack Application · Machine Learning System
-
-## Technical Architecture
-
-See `PROJECT_OVERVIEW.md` architecture diagram: Streamlit → FastAPI → Data Manager / Recommender (NCF + Q-table) → CSV stores.
-
-## Tech Stack
-
-FastAPI, Uvicorn, Streamlit, scikit-learn, pandas; CSV persistence; Dockerfiles in backend/frontend
-
-## AI / ML Details
-
-- **NCF:** MLP collaborative filtering, pickle persistence  
-- **RL:** Q-learning with rewards (view +1, cart +5, purchase +10)  
-- **Metrics:** MSE, R2 mentioned in overview  
-- **Data:** BigQuery-derived CSV sample in backend  
-
-## Resume Value
-
-### Recruiter Summary
-Hybrid recommender system with production-style API and interactive storefront.
-
-### Resume Bullets
-- Built FastAPI backend with NCF and Q-learning hybrid recommendation engine.  
-- Implemented behavior logging and reward-shaped RL for real-time personalization.  
-- Delivered Streamlit frontend integrated via REST for cart and recommendations.  
-
-## GitHub Portfolio Score
-
-**Overall: 8.3/10**
-
-## Project Evidence
-
-- `backend/app.py`, `backend/recommender_system.py`, `frontend/app.py`, `PROJECT_OVERVIEW.md`
 
 ---
 
@@ -1466,7 +1420,6 @@ Web Application
 | 1 | Hybrid Quantum GAN Drug Discovery | Deepest end-to-end scientific ML + unique quantum angle |
 | 2 | Skin Disease Prediction ViT | Strong metrics + LLM + full API |
 | 3 | RXShield AI | Production monorepo patterns, health-tech |
-| 4 | Ecommerce Hybrid Recommender | Classic ML systems design (NCF + RL) |
 | 5 | Externify Monorepo | Production docs + multi-service |
 | 6 | MRI Epilepsy GNN | Research-grade multimodal graphs |
 | 7 | Pharma Regulatory RAG Agent | Enterprise RAG + compliance |
@@ -1486,14 +1439,12 @@ Web Application
 4. ProjectKaro  
 5. Vardhan / Founderflow  
 6. Super AI Prompts (MERN)  
-7. Ecommerce (FastAPI + Streamlit)  
 
 ## AI / ML Roles
 
 1. Hybrid QGAN Drug Discovery  
 2. Skin Disease ViT  
 3. MRI Epilepsy GNN  
-4. Ecommerce Recommender  
 5. Soil NRI  
 6. Diabetes Fundus Multi-Task  
 7. Deepfake Detection  
@@ -1539,7 +1490,7 @@ Web Application
 | **Test coverage** | BookMyReels has Jest; many ML repos lack tests | Pytest for top 3 ML APIs |
 | **HIPAA / regulated health** | Health projects disclaim certification | Architecture doc only (no PHI) |
 
-**Highest ROI additions:** (1) cloud deployment proof for **BookMyReels** or **RXShield**, (2) **MLOps** badge on **Hybrid QGAN** or **Skin ViT**, (3) one **system design** write-up for **Ecommerce recommender** at scale.
+**Highest ROI additions:** (1) cloud deployment proof for **BookMyReels** or **RXShield**, (2) **MLOps** badge on **Hybrid QGAN** or **Skin ViT**.
 
 ---
 
@@ -1550,7 +1501,7 @@ Web Application
 | **Breadth** | Very high — 50+ distinct efforts across health, finance, CV, NLP, chem, web |
 | **Depth** | Top ~15 projects are interview-ready with docs and multi-file architecture |
 | **Duplication** | Significant folder duplication; canonical list above reduces noise |
-| **Documentation** | Strong in Skin, Ecommerce, Externify, RXShield, Hybrid QGAN; weak in CRA scaffolds |
+| **Documentation** | Strong in Skin, Externify, RXShield, Hybrid QGAN; weak in CRA scaffolds |
 | **Overall Portfolio Score** | **8.2 / 10** for a student/research portfolio; **9.0+** if top 5 are deployed with live URLs |
 
 ---

@@ -27,6 +27,8 @@ export type Project = {
   challenges: string[];
   learnings: string[];
   futureScope: string[];
+  clients?: ProjectClient[];
+  links?: { label: string; url: string }[];
 };
 
 export type ProjectWithImages = Project & { images: string[] };
@@ -39,9 +41,12 @@ export type TimelineEntry = {
 };
 
 export type Certification = {
+  id?: string;
   title: string;
   issuer: string;
-  group: string;
+  group?: string;
+  type?: string;
+  description?: string;
   year: string;
   image?: string;
 };
@@ -55,6 +60,7 @@ export type HeroStat = {
 
 export type ProjectKaroData = {
   name: string;
+  since?: string;
   tagline: string;
   url: string;
   description: string;
@@ -62,6 +68,20 @@ export type ProjectKaroData = {
   process: { step: string; title: string; description: string }[];
   impact: { label: string; note: string }[];
 };
+
+export type Venture = {
+  name: string;
+  tagline: string;
+  status: string;
+  url: string;
+  description: string;
+  pending?: boolean;
+  audiences?: string[];
+  offerings?: { step: string; name: string; tag: string; detail: string }[];
+  disclaimer?: string;
+};
+
+export type ProjectClient = { name: string; org: string; url?: string; quote?: string };
 
 export type BlogPost = {
   slug: string;
@@ -78,17 +98,6 @@ export type BlogPost = {
     avatar: string;
   };
   content: string;
-};
-
-export type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  avatar: string;
-  content: string;
-  rating: number;
-  projectRef?: string;
 };
 
 export type Profile = {
@@ -108,6 +117,9 @@ export type Profile = {
     description: string;
   }[];
   projectKaro?: ProjectKaroData;
+  gopyata?: Venture;
+  educationList?: { title: string; org: string; period: string; score: string }[];
+  leadership?: { title: string; detail: string; year: string; kind: string }[];
   websiteIndustries: string[];
   websiteNote: string;
 };
@@ -196,7 +208,10 @@ export function getTimeline(): TimelineEntry[] {
 export function getCertifications(): Certification[] {
   const certs = readJSON<Certification[]>("certifications.json");
   const folderImages = readImageFolder("certifications");
-  return certs.map((c, i) => ({ ...c, image: folderImages[i] }));
+  return certs.map((c, i) => ({
+    ...c,
+    image: c.image && fs.existsSync(path.join(PUBLIC_DIR, c.image)) ? c.image : folderImages[i],
+  }));
 }
 
 export function getCertificationImages(): string[] {
@@ -258,14 +273,14 @@ function readImageFolderRaw(relDir: string): string[] {
 
 export function hasProfileImage(): boolean {
   return (
-    fs.existsSync(path.join(PUBLIC_DIR, "akshay.webp")) ||
-    fs.existsSync(path.join(PUBLIC_DIR, "akshay.png"))
+    fs.existsSync(path.join(PUBLIC_DIR, "akshaykumar.webp")) ||
+    fs.existsSync(path.join(PUBLIC_DIR, "akshaykumar.png"))
   );
 }
 
 export function getProfileImagePath(): string {
-  if (fs.existsSync(path.join(PUBLIC_DIR, "akshay.webp"))) return "/akshay.webp";
-  if (fs.existsSync(path.join(PUBLIC_DIR, "akshay.png"))) return "/akshay.png";
+  if (fs.existsSync(path.join(PUBLIC_DIR, "akshaykumar.webp"))) return "/akshaykumar.webp";
+  if (fs.existsSync(path.join(PUBLIC_DIR, "akshaykumar.png"))) return "/akshaykumar.png";
   return "";
 }
 
@@ -291,67 +306,9 @@ export function getFeaturedBlogPosts(): BlogPost[] {
   return getBlogPosts().filter((p) => p.featured);
 }
 
-export function getTestimonials(): Testimonial[] {
-  return [
-    {
-      id: "1",
-      name: "Kiran Reddy",
-      role: "Client",
-      company: "Healthcare Startup, Hyderabad",
-      avatar: "",
-      content: "Got a skin disease detection model built for our clinic app. Clean code, good documentation, and explained everything clearly. Exactly what we needed.",
-      rating: 5,
-      projectRef: "skincare-ai"
-    },
-    {
-      id: "2",
-      name: "Sravanthi Naidu",
-      role: "Client",
-      company: "EdTech Platform, Vijayawada",
-      avatar: "",
-      content: "Needed a recommendation engine for our learning platform. Akshay delivered it on time, walked us through the logic, and even helped with deployment. Really solid work.",
-      rating: 5,
-      projectRef: "ecommerce-recommendation-system"
-    },
-    {
-      id: "3",
-      name: "Venkata Rao",
-      role: "Client",
-      company: "Pharma Research, Hyderabad",
-      avatar: "",
-      content: "The RAG-based compliance agent he built saved us serious time on regulatory documentation. He understood the domain fast and built something we actually use daily.",
-      rating: 5,
-      projectRef: "pharma-compliance-agent"
-    },
-    {
-      id: "4",
-      name: "Bhavana Srinivas",
-      role: "Client",
-      company: "Startup Founder, Vizag",
-      avatar: "",
-      content: "Came to ProjectKaro for a full-stack app — got exactly that. Good communication throughout, no surprises, and the UI looked professional right from the first build.",
-      rating: 5,
-      projectRef: undefined
-    },
-    {
-      id: "5",
-      name: "Suresh Varma",
-      role: "Client",
-      company: "E-commerce Business, Guntur",
-      avatar: "",
-      content: "He built a recommendation system that genuinely helped with our product discovery. The technical depth was impressive and he kept things simple to understand on our end.",
-      rating: 5,
-      projectRef: "ecommerce-recommendation-system"
-    },
-    {
-      id: "6",
-      name: "Padmavathi Rao",
-      role: "Client",
-      company: "MedTech Lab, Tirupati",
-      avatar: "",
-      content: "The MRI analysis project was technically complex — GNNs, multimodal data, the works. Akshay handled it well and the output was clear enough for our neurologists to actually use.",
-      rating: 5,
-      projectRef: "mri-epilepsy-gnn"
-    }
-  ];
+/** Real clients, taken from each project's `clients` list. A quote is shown only if one was actually provided. */
+export function getClients(): (ProjectClient & { project: string; slug: string })[] {
+  return loadProjects().flatMap((p) =>
+    (p.clients ?? []).map((c) => ({ ...c, project: p.title, slug: p.slug })),
+  );
 }

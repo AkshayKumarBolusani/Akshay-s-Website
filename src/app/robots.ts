@@ -1,52 +1,30 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 
+// Open to search engines AND AI/answer-engine crawlers: this is a public portfolio and
+// being cited accurately by ChatGPT, Claude, Perplexity and Gemini is a goal (GEO).
+const AI_BOTS = [
+  "GPTBot",
+  "ChatGPT-User",
+  "OAI-SearchBot",
+  "ClaudeBot",
+  "Claude-User",
+  "Claude-SearchBot",
+  "anthropic-ai",
+  "PerplexityBot",
+  "Perplexity-User",
+  "Google-Extended",
+  "Applebot-Extended",
+  "CCBot",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/_next/", "/private/"],
-      },
-      {
-        userAgent: "GPTBot",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "ChatGPT-User",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "Google-Extended",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "Anthropic-AI",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "Claude-Web",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "CCBot",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "PerplexityBot",
-        allow: ["/", "/blog/", "/project/"],
-      },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-      },
-      {
-        userAgent: "Bingbot",
-        allow: "/",
-      },
+      // Do NOT block /_next/: Google needs the JS/CSS to render the page.
+      { userAgent: "*", allow: "/", disallow: ["/api/"] },
+      { userAgent: AI_BOTS, allow: "/" },
     ],
     sitemap: `${site.url}/sitemap.xml`,
-    host: site.url,
   };
 }

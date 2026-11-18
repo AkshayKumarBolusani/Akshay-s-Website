@@ -1,10 +1,11 @@
 /* TEAM */
 Developer & Designer: Akshay Kumar Bolusani
-Role: Software Engineer, Full Stack Developer, AI/ML Engineer
+Role: AI & Full-Stack Software Engineer · Founder, ProjectKaro
 Location: Hyderabad, India
 Email: akshaykumarbolusani@gmail.com
 LinkedIn: linkedin.com/in/akshaykumarbolusani
 GitHub: github.com/AkshayKumarBolusani
+X: x.com/akshay_bolusani
 Site: https://akshaykumarbolusani.vercel.app
 
 /* THANKS */
@@ -13,14 +14,14 @@ Mentors: Digital Connect team
 Support: Family and friends
 
 /* SITE */
-Last update: 2026-06-06
+Last update: 2026-11-18
 Language: English
 Doctype: HTML5
 Framework: Next.js 16
 Styling: Tailwind CSS 4
 Animations: Framer Motion
 3D Graphics: Three.js, React Three Fiber
-Fonts: Geist Sans, Geist Mono
+Fonts: Syne, Space Grotesk, JetBrains Mono
 Icons: Lucide React
 Hosting: Vercel (https://akshaykumarbolusani.vercel.app)
 
@@ -38,10 +39,10 @@ Every project tells a story of problem-solving and growth.
 Code is poetry. Design is communication. Engineering is art.
 
 /* EASTER EGG */
-Press Cmd/Ctrl + K for the command center.
+Scroll the home page and watch the particles change shape.
+Drag the certificates around on the wall.
 Try the AI assistant at the bottom right.
-Explore the project galaxy to see all projects.
 
 /* COLOPHON */
 Built with passion, deployed with care.
-"Building Ideas Into Reality" - Akshay Kumar Bolusani
+"I build AI that shows its work." - Akshay Kumar Bolusani

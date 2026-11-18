@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only working files (not part of the site)
+/old-site-backup/
+/.claude/
+/data/review-drafts.md
+# local résumé copy, not published yet
+/public/Akshay_Kumar_Bolusani_Resume.pdf

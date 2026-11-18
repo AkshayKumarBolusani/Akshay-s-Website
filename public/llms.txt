@@ -1,49 +1,41 @@
-# Akshay Kumar Bolusani - Software Engineer & AI/ML Engineer
+# Akshay Kumar Bolusani - AI & Full-Stack Software Engineer
 # https://akshaykumarbolusani.vercel.app
-# Last Updated: 2026-06-06
+# Last Updated: 2026-11-18
 
 ## About
-Akshay Kumar Bolusani is a Software Engineer, Full Stack Developer, and AI/ML Engineer based in Hyderabad, India. Former Web Development Intern at Digital Connect (September 2022 – January 2026). B.Tech graduate in Computer Science Engineering (2026). Available for software engineering, AI/ML, and freelance opportunities.
+Akshay Kumar Bolusani is an AI & Full-Stack Software Engineer based in Hyderabad, India. Founder of ProjectKaro (Jan 2024 – present), a software studio that has delivered 60+ projects with a team of 23. Former Web Development Intern at Digital Connect (Aug 2023 – Jan 2026), where he built and maintained 100+ client websites. B.Tech in Computer Science and Engineering, Malla Reddy University (2022–2026, CGPA 8.97). Presented a research paper at PiCET 2026 (Scopus-indexed IET proceedings). Former Vice President, Dept. of CSE (700+ students). Founder of Gopyata (https://gopyata.in), DPDP privacy-readiness for Indian businesses.
 
 ## Website
 - Primary URL: https://akshaykumarbolusani.vercel.app
 - Sitemap: https://akshaykumarbolusani.vercel.app/sitemap.xml
+- Work: https://akshaykumarbolusani.vercel.app/work
+- Ventures: https://akshaykumarbolusani.vercel.app/ventures
+- About: https://akshaykumarbolusani.vercel.app/about
 - Blog: https://akshaykumarbolusani.vercel.app/blog
-- Projects index: https://akshaykumarbolusani.vercel.app/#projects
+- Contact: https://akshaykumarbolusani.vercel.app/contact
+- Full knowledge file (all projects, experience, skills): https://akshaykumarbolusani.vercel.app/llms-full.txt
 
 ## Expertise
-- Full Stack Development (Next.js, React, TypeScript, Python, Node.js)
-- AI & Machine Learning (Computer Vision, NLP, LLMs, RAG Systems)
-- Deep Learning (PyTorch, TensorFlow, Transformers)
-- Cloud & DevOps (AWS, Vercel, Docker, Kubernetes)
-- Database Systems (PostgreSQL, MongoDB, Vector Databases)
+- Applied AI: retrieval-augmented generation (Docling, Qdrant, Ollama), computer vision (DINOv2, ResNet50), NLP
+- Backend & Web: FastAPI, Node.js, React, Next.js, TypeScript, Java, SQL, PostgreSQL, MySQL, MongoDB
+- Tools & Cloud: Docker, Git, Linux, AWS
+- Data Analytics: Power BI, DAX, Power Query
+- Security tooling: Wazuh SIEM, Elastic Stack, Suricata IDS, MITRE ATT&CK
 
 ## Notable Projects
-
-### AI & Machine Learning
-- SkinCare AI: CNN-based skin disease detection achieving 92.6% accuracy
-- Hybrid Quantum GAN Drug Discovery: Quantum-classical ML for molecule generation
-- Pharmaceutical Compliance Agent: RAG-based regulatory compliance system
-- AI Interview Bot: LLM-powered technical interview simulator
-
-### Full Stack Applications
-- E-Commerce Platform: Multi-tenant marketplace with recommendation engine
-- Healthcare Management System: HIPAA-compliant patient management
-- Real-time Collaboration Tools: WebSocket-based live editing
-
-### Research & Innovation
-- Computer Vision for Healthcare: Medical imaging analysis systems
-- LLM/RAG Systems: Enterprise knowledge management solutions
-- Recommendation Engines: Personalization systems for e-commerce
+- Shapeshift: free, open-source, offline file converter for macOS (Swift, MIT). Drag a file, tap a key, drop it on a wedge. https://github.com/AkshayKumarBolusani/shapeshift
+- Cognora AI: local-first retrieval-augmented document Q&A with per-page citations (Ollama, Qdrant, SQLite, FastAPI, React, PDF.js)
+- India Invoice AI: open-source (MIT), review-first GST invoice intelligence with Decimal arithmetic checks
+- SkinCare AI: skin disease detection with fine-tuned DINOv2 and ResNet50 served via FastAPI
+- Enterprise SOC Lab: Wazuh, Elastic Stack and Suricata mapped to MITRE ATT&CK
+- PhishGuard AI: explainable hybrid phishing detection
+- Hybrid Quantum GAN Drug Discovery, RXShield AI, Pharmaceutical Compliance Agent and more at /work
 
 ## Services (ProjectKaro)
-Professional services platform offering:
-- Website Development & Design
-- AI/ML Solutions & Integration
-- Full Stack Application Development
-- Technical Consulting
-- Student Project Assistance
-- Startup MVP Development
+- Business websites
+- Startup MVPs
+- Student and academic software
+- Research projects
 
 ## Content
 - Technical blog posts on AI, ML, and full-stack development
