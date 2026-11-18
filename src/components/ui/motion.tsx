@@ -269,13 +269,13 @@ export function Counter({
     return () => cancelAnimationFrame(raf);
   }, [inView, to, duration]);
   return (
-    <span ref={ref} className={cn("inline-block max-w-full whitespace-nowrap tabular-nums", className)} aria-label={`${to.toFixed(decimals)}${suffix}`}>
-      {/* invisible copy of the final number so the font fit is computed for the widest state */}
-      <span aria-hidden className="invisible block h-0 overflow-hidden">
+    <span ref={ref} className={cn("relative inline-block max-w-full whitespace-nowrap tabular-nums", className)} aria-label={`${to.toFixed(decimals)}${suffix}`}>
+      {/* invisible copy of the final number holds the width, so the font fit uses the widest state */}
+      <span aria-hidden className="invisible">
         {to.toFixed(decimals)}
         {suffix}
       </span>
-      <span aria-hidden>
+      <span aria-hidden className="absolute left-0 top-0">
         {v.toFixed(decimals)}
         {suffix}
       </span>

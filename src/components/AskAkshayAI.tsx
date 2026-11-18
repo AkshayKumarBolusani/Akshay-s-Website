@@ -100,11 +100,14 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 
@@ -136,7 +139,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[84] bg-bg/50 backdrop-blur-sm"
+              data-lenis-prevent className="fixed inset-0 z-[84] bg-bg/50 backdrop-blur-sm"
               onClick={handleClose}
               aria-hidden="true"
             />
@@ -146,7 +149,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.96 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed z-[85] flex max-h-[min(90dvh,36rem)] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-border bg-bg-soft/95 backdrop-blur-xl sm:rounded-3xl"
+              data-lenis-prevent className="fixed z-[85] flex overscroll-contain max-h-[min(90dvh,36rem)] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-border bg-bg-soft/95 backdrop-blur-xl sm:rounded-3xl"
               style={{
                 bottom: "max(1rem, env(safe-area-inset-bottom, 0px))",
                 right: "max(1rem, env(safe-area-inset-right, 0px))",
@@ -178,7 +181,7 @@ export function AskAkshayAI({ index }: { index: SearchIndex }) {
                 </button>
               </div>
 
-              <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+              <div ref={scrollRef} data-lenis-prevent className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-4 [-webkit-overflow-scrolling:touch]">
                 {messages.map((m, i) => (
                   <div
                     key={i}

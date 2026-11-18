@@ -41,7 +41,7 @@ function RotatingPhrase() {
 function SpinBadge() {
   const text = "AVAILABLE FOR WORK • AI • FULL STACK • 2026 • ";
   return (
-    <div className="relative h-24 w-24 sm:h-28 sm:w-28">
+    <div className="relative h-24 w-24 sm:h-28 sm:w-28 sm:[@media(max-height:820px)]:h-16 sm:[@media(max-height:820px)]:w-16">
       <svg viewBox="0 0 100 100" className="animate-spin-slow h-full w-full">
         <defs>
           <path id="circle" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
@@ -134,7 +134,7 @@ export function Hero({ imageSrc }: { imageSrc: string }) {
       {/* outline surname — in front of the portrait */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-[17%] whitespace-nowrap sm:bottom-[5%]"
+        className="pointer-events-none absolute inset-x-0 bottom-[17%] whitespace-nowrap sm:bottom-[5%] sm:[@media(max-height:820px)]:bottom-[11%]"
         style={{ x: outlineX }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -146,7 +146,7 @@ export function Hero({ imageSrc }: { imageSrc: string }) {
       </motion.div>
 
       {/* top-left intro copy */}
-      <motion.div className="gutter relative z-10 mt-[5.25rem] max-w-md sm:absolute sm:bottom-[24%] sm:left-0 sm:mt-0 sm:max-w-[17rem] lg:max-w-xs" style={{ opacity: fade }}>
+      <motion.div className="gutter relative z-10 mt-[5.25rem] max-w-md sm:absolute sm:bottom-[24%] sm:[@media(max-height:820px)]:bottom-[31%] sm:left-0 sm:mt-0 sm:max-w-[17rem] lg:max-w-xs" style={{ opacity: fade }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export function Hero({ imageSrc }: { imageSrc: string }) {
       {/* bottom bar */}
       <motion.div className="relative z-10 mt-auto" style={{ opacity: fade }}>
       <motion.div
-        className="gutter flex items-end justify-between pb-6 sm:pb-8"
+        className="gutter flex items-end justify-between pb-6 sm:pb-8 sm:[@media(max-height:820px)]:pb-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.3 }}
@@ -174,7 +174,7 @@ export function Hero({ imageSrc }: { imageSrc: string }) {
           </p>
           <p className="hidden sm:block">17.38°N 78.48°E · Hyderabad</p>
         </div>
-        <SpinBadge />
+        <div className="sm:mr-[9.5rem]"><SpinBadge /></div>
       </motion.div>
       </motion.div>
     </section>
