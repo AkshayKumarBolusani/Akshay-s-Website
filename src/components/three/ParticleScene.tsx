@@ -185,7 +185,7 @@ export default function ParticleScene({
 
   return (
     <Canvas
-      dpr={[1, 1.75]}
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0, 7.2], fov: 45 }}
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       frameloop={reduced ? "demand" : "always"}
