@@ -29,6 +29,8 @@ export function Wall({
   const [z, setZ] = useState<number[]>(() => certs.map((_, i) => i));
   const [open, setOpen] = useState<Certification | null>(null);
   const top = useRef(certs.length);
+  // a drag must never count as a click: open only on a real tap
+  const dragged = useRef(false);
 
   const bring = (i: number) =>
     setZ((prev) => {
@@ -77,8 +79,22 @@ export function Wall({
               dragConstraints={board}
               dragElastic={0.15}
               dragMomentum
-              onPointerDown={() => bring(i)}
-              onTap={() => setOpen(c)}
+              onPointerDown={() => {
+                dragged.current = false;
+                bring(i);
+              }}
+              onDragStart={() => {
+                dragged.current = true;
+              }}
+              onTap={() => {
+                if (!dragged.current) setOpen(c);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setOpen(c);
+                }
+              }}
               initial={{ opacity: 0, scale: 0.6, rotate: s.rot * 2 }}
               whileInView={{ opacity: 1, scale: 1, rotate: s.rot }}
               viewport={{ once: true }}
